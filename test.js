@@ -1,7 +1,10 @@
 const axios = require("axios");
 
 function getHotel() {
+
+    const optionsHotels = {
     const options = {
+
         method: 'GET',
         url: 'https://hotels4.p.rapidapi.com/locations/v2/search',
         params: { query: 'new york', locale: 'en_US', currency: 'USD' },
