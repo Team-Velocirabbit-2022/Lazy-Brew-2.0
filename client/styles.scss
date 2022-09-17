@@ -1,0 +1,48 @@
+body{
+    background-color: green;
+}
+
+div{
+    border-style: solid;
+    border-width: 1px;
+}
+#main_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    text-align: center;
+}
+#hotel_brewery_wrapper{
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: white;
+}
+
+#hotel_brewery_wrapper div{
+    margin: 1em;
+}
+#hotelcontaine {
+    background-color: bisque;
+    width: 45%;
+}
+
+#brewerycontaine {
+    background-color: brown;
+    width: 45%;
+}
+
+#input-box {
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#locationButton {
+    padding: 8px;
+    border-radius: 8px;
+    border-style: none;
+}

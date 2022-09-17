@@ -1,12 +1,13 @@
 import React from 'react';
+
 import MainContainer from './containers/MainContainer';
+import './styles.scss'
 
 const App = () => {
   return (
-    <>
-      <h1>Example React App</h1>
+    <div className='appContainer'>
       <MainContainer />
-    </>
+    </div>
   );
 };
 
