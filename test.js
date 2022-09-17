@@ -1,6 +1,7 @@
 // import axios from 'axios'
 const axios = require("axios");
 
+<<<<<<< HEAD
 // function getHotel() {
 //     const optionsHotels = {
 //         method: 'GET',
@@ -35,7 +36,13 @@ const axios = require("axios");
 // getHotel()
 
 try {
+=======
+function getHotel() {
+
+>>>>>>> dev
     const optionsHotels = {
+    const options = {
+
         method: 'GET',
         url: 'https://hotels4.p.rapidapi.com/locations/v2/search',
         params: { query: 'seattle', locale: 'en_US', currency: 'USD' },
