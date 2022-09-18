@@ -1,6 +1,6 @@
 import React from 'react';
-
-const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone }) => {
+import Brewery from './Brewery';
+const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone, setHotelDone }) => {
   // 1) onClick to invoke a function(with lat/long as arguments) 
   //2) that said function will use the api, given the coordinates (input from function) 
   //3) set state 
@@ -9,12 +9,14 @@ const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone }) => {
   return (
     <div className='hotelContainer'>Hotel Placeholder
       <div> <span>Query Results: </span> </div>
+      <button onClick={(e) => setHotelDone(true)}>See hotels</button>
       {hotelDone && hotelList.map((ele, i) => {
-        console.log('this is props', hotelList)
         return (
           <div key={i}>
+            <b><h1>HOTEL</h1></b>
             i: {i}
             Name: {ele.name}
+            # of pubs: {ele.breweryListLength}
             Address: {ele.address['streetAddress']}
             City: {ele.address['locality']}
             Postal Code: {ele.address['postCode']}
@@ -29,13 +31,19 @@ const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone }) => {
             Badge: {ele.guestReviews['badge']}
             Scarcity: {ele.messaging['scarcity']}
             Price: {ele.ratePlan['price']['current']}
-
-            {/* Features: {ele.ratePlan['features']} */}
             <div>
               <img src={ele.optimizedThumbUrls['srpDesktop']}></img>
             </div>
             <button onClick={(e) => setBrewDone(true)}>Click me to see breweries</button>
-            {/* <div> <Brewery /></div> */}
+            {/* <button onClick={(e) => console.log('you clicked me!')}>Click me to see breweries</button> */}
+            <div>
+
+              {ele.breweryList.map((brewerly, j) => {
+                return (
+                  <Brewery key={`Brewery ${j}`} brewerly={brewerly} />
+                )
+              })}
+            </div>
           </div>
         )
       })}
@@ -44,33 +52,3 @@ const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone }) => {
 };
 
 export default Hotel;
-
-// const [brewList, setBrewList] = useState([])
-
-// const getBrewData = (lat,long) => {
-//   const optionsBreweries = {
-//     method: 'GET',
-//     url: `https://api.openbrewerydb.org/breweries?by_dist=${lat},${long}&per_page=5`
-//     params: {
-//     },
-//     headers: {
-//       'X-RapidAPI-Key': '213bf8eeb6mshabac5e8f6740a32p17141djsnbf46e85640b0',
-//       'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
-//     }
-//   };
-
-//   axios.request(optionsBreweries)
-//     .then((response) => {
-      // console.log(response.data, 'response data')
-      // setBrewList(response.data)
-//       console.log(hotelList, 'hotelList')
-// <Brewery props = {brewList} />
-//     })
-//     .then((resDone) => {
-//       setDone(true)
-//     })
-//     .catch((e) => {
-//       console.error(e, 'e')
-//     })
-
-// }
