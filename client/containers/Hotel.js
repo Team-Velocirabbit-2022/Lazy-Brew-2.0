@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hotel = ({ hotelList, hotelDone }) => {
+const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone }) => {
   // 1) onClick to invoke a function(with lat/long as arguments) 
   //2) that said function will use the api, given the coordinates (input from function) 
   //3) set state 
@@ -34,9 +34,8 @@ const Hotel = ({ hotelList, hotelDone }) => {
             <div>
               <img src={ele.optimizedThumbUrls['srpDesktop']}></img>
             </div>
-            {/* <button onClick={ }>Click me to see breweries</button> */}
-            <button >Click me to see breweries</button>
-            <div> <Brewery /></div>
+            <button onClick={(e) => setBrewDone(true)}>Click me to see breweries</button>
+            {/* <div> <Brewery /></div> */}
           </div>
         )
       })}
