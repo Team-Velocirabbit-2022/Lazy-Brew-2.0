@@ -35,7 +35,7 @@ const MainContainer = () => {
         currency: 'USD'
       },
       headers: {
-        'X-RapidAPI-Key': '213bf8eeb6mshabac5e8f6740a32p17141djsnbf46e85640b0',
+        'X-RapidAPI-Key': '1c0468dc69mshb2bfaf661934cf1p125acdjsnbe73e4a4cb45',
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
       }
     };
@@ -47,54 +47,41 @@ const MainContainer = () => {
         for (let i = 0; i < propertiesResult.length; i += 1) {
           const optionsBreweries = {
             method: 'GET',
-            // url: `https://api.openbrewerydb.org/breweries?by_dist=33.945757,-118.358262&per_page=20`,
-            url: `https://api.openbrewerydb.org/breweries?by_dist=${propertiesResult[i].coordinate.lat},${propertiesResult[i].coordinate.lon}&per_page=20`,
+            url: `https://api.openbrewerydb.org/breweries?by_dist=${propertiesResult[i].coordinate.lat},${propertiesResult[i].coordinate.lon}&per_page=10`,
           }
-          // console.log(propertiesResult[i].coordinate, 'propertiesResult.coordinate.lat')
           let oneProperty = propertiesResult[i]
           axios.request(optionsBreweries)
             .then((beerResponse) => {
-              // console.log(beerResponse.data)
-              // console.log(oneProperty.coordinates.lat, oneProperty.coordinates.long)
+
               const breweryArray = []
               for (let j = 0; j < beerResponse.data.length; j++) {
+
                 let distanceFromHotel = geodist({ lat: oneProperty.coordinate.lat, lon: oneProperty.coordinate.lon }, { lat: beerResponse.data[j].latitude, lon: beerResponse.data[j].longitude })
                 if (distanceFromHotel > 1) {
                   break
                 }
+                // beerResponse.data['showHotel'] = true
                 breweryArray.push(beerResponse.data[i])
-                // console.log(beerResponse.data[i], 'beerResponse.data[i]', distanceFromHotel, 'distanceFromHotel', breweryArray, 'breweryArray')
+                // console.log(beerResponse, 'beerResponse')
               }
               oneProperty.breweryList = breweryArray
               oneProperty.breweryListLength = breweryArray.length
-              // oneProperty.breweryListLength = breweryArray.length
-              // console.log(oneProperty.coordinate.lat, oneProperty.coordinate.lon, 'oneProperty')
-              // setHotelList([...hotelList, oneProperty])
-              finalHotelData.push(oneProperty) //instead of pushing to finalHotelData, we can just change state like setHotelList([...hotelList, oneProperty]) hopefully this is a valid way?
-              //maybe a console.log to say that this call is over 
-              // console.log(finalHotelData, 'finalHotelData')
+              oneProperty.showHotel = true
+              finalHotelData.push(oneProperty)
               return finalHotelData
             })
             .then((finalData) => {
-              // props.sort((a,b) => {a.brewerlyList.length - b.breweryListLength > 0 ? 1 : -1})
-              // if (setHotelList(finalData)
-              console.log(finalData, 'finalData')
+              // console.log(finalData, 'finalData')
               setHotelList(finalData)
               setHotelDone(true)
             })
             .catch((e) => {
-              console.error(e, 'e')
+              console.error(e, 'brewery call not complete')
             })
         }
       })
-      // .then((resDone) => {
-      //   //console.log both apis officially called :)
-      //   // console.log(finalHotelData, 'finalHotelData')
-      //   setHotelList(finalHotelData)
-      //   setHotelDone(true)
-      // })
       .catch((e) => {
-        console.error(e, 'e')
+        console.error(e, 'hotels not compelte')
       })
   }
 
@@ -126,20 +113,10 @@ const MainContainer = () => {
       </div>
       <div id="hotel_brewery_wrapper">
         {/* <Hotel hotelList={hotelList} brewList={brewList} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} /> */}
-        <Hotel hotelList={hotelList.sort((a, b) => {
+        {/* <Hotel hotelList={hotelList.sort((a, b) => {
           return (a.brewerlyListLength > b.brewerlyListLength ? 1 : -1)
-        })} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} />
-        {/* <Breweries/> */}
-        {/* <div id="hotelcontaine">
-          <h3>List of Hotels</h3>
-          {done &&
-          {hotelCompArr}
-        }
-        </div>
-        <div id="brewerycontaine">
-          <h3>List of Breweries</h3>
-          {breweryCompArr}
-        </div> */}
+        })} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} /> */}
+        <Hotel setHotelList={setHotelList} hotelList={hotelList} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} />
       </div>
     </div>
   );
