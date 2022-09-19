@@ -12,7 +12,18 @@ const MainContainer = () => {
 
   const [hotelList, setHotelList] = useState([])
   const [hotelDone, setHotelDone] = useState(false)
-  const [brewDone, setBrewDone] = useState(false)
+  const [brewDone, setBrewDone] = useState({
+    0: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+  })
   const [isLoading, setIsLoading] = useState(true)
 
   const [hotelResultNumber, setHotelResultNumber] = useState(5)
@@ -35,7 +46,7 @@ const MainContainer = () => {
         currency: 'USD'
       },
       headers: {
-        'X-RapidAPI-Key': '1c0468dc69mshb2bfaf661934cf1p125acdjsnbe73e4a4cb45',
+        'X-RapidAPI-Key': 'ac1503ca17msh87ba44b85e4dc48p118ae8jsn253f64ec70de',
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
       }
     };
@@ -86,11 +97,17 @@ const MainContainer = () => {
 
   return (
     <div id="main_wrapper">
+
       <h1>Lazy Brew</h1>
       <div>
         <select onChange={(e) => getHotelData(e.target.value)}>
           <option value={'1506246'}>New York</option>
           <option value={'1439028'}>Los Angeles</option>
+
+
+          {/* need to test these */}
+          <option value={'1493604'}>San Francisco</option>
+
           <option>Coming to a city near you</option>
           {/*<option value={'198689'}>San Diego</option>
           <option value={'116889'}>Boston</option>
@@ -117,7 +134,9 @@ const MainContainer = () => {
           setHotelDone={setHotelDone}
           isLoading={isLoading}
         />}
+
       </div>
+
     </div>
   );
 

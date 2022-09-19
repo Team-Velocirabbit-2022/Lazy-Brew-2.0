@@ -6,7 +6,7 @@ const Brewery = ({ brewery }) => {
   return (
 
     <div className='breweryContainer'>
-      <b><div>BREWERLY</div></b>
+      <b><div>BREWERY</div></b>
       <div> <span>Brewery Type:{brewery.brewery_type} </span>  </div>
       <div> <span>City:{brewery.city} </span>  </div>
       <div> <span>County:{brewery.county} </span>  </div>

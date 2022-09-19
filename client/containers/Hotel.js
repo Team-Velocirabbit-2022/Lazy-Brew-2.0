@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Brewery from './Brewery';
 import axios from 'axios'
-const Hotel = ({ hotelList, setBrewDone }) => {
+const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
 
   /*
   *** working on state management/loading api process to be more clean ***
@@ -11,6 +11,18 @@ const Hotel = ({ hotelList, setBrewDone }) => {
   4) slider
   */
   const [exclusionList, setExclusionList] = useState([])
+  const [specificHotel, setSpecHotel] = useState({
+    0: true,
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+    5: true,
+    6: true,
+    7: true,
+    8: true,
+    9: true,
+  })
 
   useEffect(() => {
     axios.get('http://localhost:3000/api')
@@ -26,17 +38,20 @@ const Hotel = ({ hotelList, setBrewDone }) => {
       })
   }, [])
 
-  function hideHotel(name) {
-    try {
-      axios.post('http://localhost:3000/api', {
-        nameOfHotel: name,
-        action: 'exclude'
-      })
-    } catch (err) {
-      console.log(err, 'err')
-    }
+  function hideHotel(name, i) {
+    // setState to change / test to see if it will hide or show
+    setSpecHotel(prevHotels => ({ ...prevHotels, [i]: !specificHotel[i] }));
+    // try {
+    //   
+    //   axios.post('http://localhost:3000/api', {
+    //     nameOfHotel: name,
+    //     action: 'exclude'
+    //   })
+    // } catch (err) {
+    //   console.log(err, 'err')
+    // }
   }
-  
+
   return (
     <div className='hotelContainer'>
       Hotel Placeholder
@@ -48,6 +63,7 @@ const Hotel = ({ hotelList, setBrewDone }) => {
         })
           .filter((hotel) => !exclusionList.includes(hotel.name))
           .map((ele, i) => {
+            if(specificHotel[i]){
             return (
               <div key={i}>
                 <b><h1>HOTEL</h1></b>
@@ -71,19 +87,24 @@ const Hotel = ({ hotelList, setBrewDone }) => {
                 <div>
                   <img src={ele.optimizedThumbUrls['srpDesktop']}></img>
                 </div>
-                <button onClick={(e) => hideHotel(ele.name)}>Hide hotel</button>
-                <button onClick={(e) => setBrewDone(true)}>Click me to see breweries</button>
-                <div>
+                <button onClick={(e) => { hideHotel(name, i) }}>Hide hotel</button>
+                <button id={i} onClick={(e) => { setBrewDone(prevBrew => ({ ...prevBrew, [i]: !brewDone[i] })) }}>
+                  {!brewDone[i] && ('Click me to show breweries')}
+                  {brewDone[i] && ('Click me to hide breweries')}
+                </button>
+                {brewDone[i] && (<div>
 
                   {ele.breweryList.map((brewery, j) => {
                     return (
                       <Brewery key={`Brewery ${j}`} brewery={brewery} />
                     )
                   })}
-                </div>
+                </div>)}   
               </div>
-            )
+            )}
+            
           }))}
+          
     </div>
   )
 };
