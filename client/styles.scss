@@ -1,40 +1,56 @@
-body{
-    background-color: green;
+$bg: #6A4973;
+$conBg: #4A94A8;
+$textColor: #2B293C;
+$textBg: #E2D9CA;
+
+
+body {
+    background-color: $bg;
+    color: $textColor
 }
 
-div{
-    border-style: solid;
-    border-width: 1px;
+#lazyBrew-header {
+    background-color: $textBg;
+    display: flex;
+    justify-content: center;
 }
-#main_wrapper{
+
+.appContainer {
+    display: flex;
+    justify-content: center;
+}
+
+// div{
+//     border-style: solid;
+//     border-width: 1px;
+// }
+#main_wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    background-color: $textBg;
     text-align: center;
 }
-#hotel_brewery_wrapper{
+
+#allHotelsWrapper {
     width: 700px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: white;
+    background-color: $conBg
 }
 
-#hotel_brewery_wrapper div{
-    margin: 1em;
+#allHotelsWrapper div {
+    margin: 5px;
 }
-#hotelcontaine {
-    background-color: bisque;
+
+.hotelcontainer {
+    background-color: pink;
     width: 45%;
 }
 
-#brewerycontaine {
-    background-color: brown;
-    width: 45%;
-}
 
 #input-box {
     padding: 8px;
@@ -45,4 +61,66 @@ div{
     padding: 8px;
     border-radius: 8px;
     border-style: none;
+}
+
+.allBreweriesWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.breweryGridContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "content content"
+        "content content"
+        "content content"
+        "footer footer";
+    background-color: $textBg;
+    margin: 1em;
+}
+
+.box {
+    background-color: $textBg;
+    margin: 0em;
+}
+
+.header {
+    grid-area: header;
+    background-color: $textBg;
+}
+
+.content {
+    grid: content;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.hotelGridContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "content content"
+        "content content"
+        "content content"
+        "content content"
+        "footer footer";
+    background-color: $textBg;
+}
+
+.hotel {
+    background-color: $textBg;
+    margin: 1em;
+}
+
+.hotelWrapper {
+    background-color: $textBg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
