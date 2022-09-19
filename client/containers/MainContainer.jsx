@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios'
 import Hotel from './Hotel';
 
+//library for calculating distance using longitude/latitude
 var geodist = require('geodist')
 
 const mapStateToProps = (state) => ({});
@@ -26,16 +27,22 @@ const MainContainer = () => {
   })
   const [isLoading, setIsLoading] = useState(true)
 
+  const [checkInDate, setCheckInDate] = useState('')
+  const [checkOutDate, setCheckOutDate] = useState('')
+  const [selectedCity, setCity] = useState('')
+
   const [hotelResultNumber, setHotelResultNumber] = useState(5)
 
-  const getHotelData = (destinationId) => {
-    let checkIn = '2022-10-02'
-    let checkOut = '2022-10-10'
+  //fetch request for hotels with check in/check out dates pertaining to city selected
+  const getHotelData = () => {
+    let checkIn = checkInDate.split("/").reverse().join("-")
+    let checkOut = checkOutDate.split("/").reverse().join("-")
+
     const optionsProperties = {
       method: 'GET',
       url: 'https://hotels4.p.rapidapi.com/properties/list',
       params: {
-        destinationId: destinationId,
+        destinationId: selectedCity,
         pageNumber: '1',
         pageSize: hotelResultNumber,
         checkIn: checkIn,
@@ -46,6 +53,7 @@ const MainContainer = () => {
         currency: 'USD'
       },
       headers: {
+        //have to reapply for the key 
         'X-RapidAPI-Key': 'ac1503ca17msh87ba44b85e4dc48p118ae8jsn253f64ec70de',
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
       }
@@ -67,6 +75,7 @@ const MainContainer = () => {
             url: `https://api.openbrewerydb.org/breweries?by_dist=${apiHotelList[i].coordinate.lat},${apiHotelList[i].coordinate.lon}&per_page=10`,
           }
           let oneProperty = apiHotelList[i]
+          //based on hotel longitude/latitude, fetch request for breweries within 2 miles radius
           axios.request(optionsBreweries)
             .then((beerResponse) => {
               const breweryArray = []
@@ -80,6 +89,7 @@ const MainContainer = () => {
                 // console.log(beerResponse, 'beerResponse')
               }
               oneProperty.breweryList = breweryArray
+              //use the number of number of breweries to sort hotel order by most breweries in the vacinity
               oneProperty.breweryListLength = breweryArray.length
               finalHotelData.push(oneProperty)
               setHotelList(current => [...current, oneProperty])
@@ -88,6 +98,7 @@ const MainContainer = () => {
         return finalHotelData.length
       })
       .then((finalData) => {
+        //set state so that the page can rerender upon the promise fetch call completion
         setIsLoading(true)
       })
       .catch((e) => {
@@ -97,32 +108,30 @@ const MainContainer = () => {
 
   return (
     <div id="main_wrapper">
+      <div id='lazyBrew-header'><h1>Lazy Brew</h1></div>
+      <label>Select Destination</label>
+      <select onChange={(e) => setCity(e.target.value)}>
+        <option value="" disabled selected>Select Your City</option>
+        <option value={'1506246'}>New York</option>
+        <option value={'1439028'}>Los Angeles</option>
+        <option value={'1493604'}>San Francisco</option>
+        <option value={'1633050'}>Hawaii</option>
+        <option value={'780'}>Colorado</option>
 
-      <h1>Lazy Brew</h1>
-      <div>
-        <select onChange={(e) => getHotelData(e.target.value)}>
-          <option value={'1506246'}>New York</option>
-          <option value={'1439028'}>Los Angeles</option>
 
+      </select>
 
-          {/* need to test these */}
-          <option value={'1493604'}>San Francisco</option>
+      <label>Check-in Date</label>
+      <input type="date" onChange={(e) => setCheckInDate(e.target.value)}></input>
+      <label>Check-in Date</label>
+      <input type="date" onChange={(e) => setCheckOutDate(e.target.value)}></input>
 
-          <option>Coming to a city near you</option>
-          {/*<option value={'198689'}>San Diego</option>
-          <option value={'116889'}>Boston</option>
-          <option value={}>Asheville</option>//TODO: finish hardcoding destination IDs
-          <option value={}>Lexington</option>
-          <option value={}>Portland</option>
-          <option value={}>Grand Rapid</option>
-          <option value={}>Boulder</option>
-          <option value={}>Fort Collins</option>
-          <option value={}>Houston</option>*/}
-        </select>
-        <button onClick={(e) => setHotelDone(true)}>See hotels</button>
+      <button onClick={(e) => {
+        getHotelData();
+        setHotelDone(true)
+      }}>See Hotels</button>
 
-      </div>
-      <div id="hotel_brewery_wrapper">
+      <div id="allHotelsWrapper">
         {isLoading || <>Loading...</>}
 
         {hotelDone && <Hotel
@@ -134,9 +143,7 @@ const MainContainer = () => {
           setHotelDone={setHotelDone}
           isLoading={isLoading}
         />}
-
       </div>
-
     </div>
   );
 

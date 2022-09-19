@@ -15,9 +15,6 @@ mongoose.connect(MONGO_URI, {
   .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
 
-
-
-
 const HotelSchema = new mongoose.Schema({
   nameOfHotel: { type: String, required: true, unique: true },
   action: { type: String, required: true },
