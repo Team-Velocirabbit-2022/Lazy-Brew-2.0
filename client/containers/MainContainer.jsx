@@ -16,7 +16,10 @@ const MainContainer = () => {
   const [hotelList, setHotelList] = useState([])
   const [hotelDone, setHotelDone] = useState(false)
   const [brewDone, setBrewDone] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [exclusionList, setExclusionList] = useState([{}])
 
+  const [hotelResultNumber, setHotelResultNumber] = useState(5)
   const getHotelData = (destinationId) => {
     let checkIn = '2022-10-02'
     let checkOut = '2022-10-10'
@@ -26,7 +29,7 @@ const MainContainer = () => {
       params: {
         destinationId: destinationId,
         pageNumber: '1',
-        pageSize: '5',
+        pageSize: hotelResultNumber,
         checkIn: checkIn,
         checkOut: checkOut,
         adults1: '1',
@@ -40,46 +43,59 @@ const MainContainer = () => {
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
       }
     };
+    setIsLoading(false)
 
+    // axios.get('http://localhost:3000/api')
+    //   .then((dbResponse) => {
+    //     console.log(dbResponse, 'dbResponse')
+    //   })
+    //   .catch((e) => {
+    //     console.error('error is here')
+    //   })
     axios.request(optionsProperties)
       .then((response) => {
         let propertiesResult = response.data.data.body.searchResults.results
+        return propertiesResult
+      })
+      .then((apiHotelList) => {
+        console.log(apiHotelList, 'apiHotelList')
         let finalHotelData = []
-        for (let i = 0; i < propertiesResult.length; i += 1) {
+        for (let i = 0; i < apiHotelList.length; i++) {
           const optionsBreweries = {
             method: 'GET',
-            url: `https://api.openbrewerydb.org/breweries?by_dist=${propertiesResult[i].coordinate.lat},${propertiesResult[i].coordinate.lon}&per_page=10`,
+            url: `https://api.openbrewerydb.org/breweries?by_dist=${apiHotelList[i].coordinate.lat},${apiHotelList[i].coordinate.lon}&per_page=10`,
           }
-          let oneProperty = propertiesResult[i]
+          let oneProperty = apiHotelList[i]
           axios.request(optionsBreweries)
             .then((beerResponse) => {
-
               const breweryArray = []
               for (let j = 0; j < beerResponse.data.length; j++) {
-
                 let distanceFromHotel = geodist({ lat: oneProperty.coordinate.lat, lon: oneProperty.coordinate.lon }, { lat: beerResponse.data[j].latitude, lon: beerResponse.data[j].longitude })
                 if (distanceFromHotel > 2) {
                   break
                 }
                 // beerResponse.data['showHotel'] = true
-                breweryArray.push(beerResponse.data[i])
+                breweryArray.push(beerResponse.data[j])
                 // console.log(beerResponse, 'beerResponse')
               }
               oneProperty.breweryList = breweryArray
               oneProperty.breweryListLength = breweryArray.length
+              //just have to change this to make a db call
+
+              // if (oneProperty.name == 'citizenM Los Angeles Downtown') {
+              //   oneProperty.showHotel = false
+              // } else {
+              //   oneProperty.showHotel = true
+              // }
               oneProperty.showHotel = true
               finalHotelData.push(oneProperty)
-              return finalHotelData
-            })
-            .then((finalData) => {
-              // console.log(finalData, 'finalData')
-              setHotelList(finalData)
-              setHotelDone(true)
-            })
-            .catch((e) => {
-              console.error(e, 'brewery call not complete')
+              setHotelList(current => [...current, oneProperty])
             })
         }
+        return finalHotelData.length
+      })
+      .then((finalData) => {
+        setIsLoading(true)
       })
       .catch((e) => {
         console.error(e, 'hotels not compelte')
@@ -111,13 +127,25 @@ const MainContainer = () => {
         />
         <button id='locationButton' onClick={getHotel}>Search 
         </button> */}
+        <button onClick={(e) => setHotelDone(true)}>See hotels</button>
+
       </div>
       <div id="hotel_brewery_wrapper">
         {/* <Hotel hotelList={hotelList} brewList={brewList} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} /> */}
         {/* <Hotel hotelList={hotelList.sort((a, b) => {
           return (a.brewerlyListLength > b.brewerlyListLength ? 1 : -1)
         })} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} /> */}
-        <Hotel setHotelList={setHotelList} hotelList={hotelList} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} />
+        {isLoading || <>Loading...</>}
+
+        {hotelDone && <Hotel
+          setHotelList={setHotelList}
+          hotelList={hotelList}
+          hotelDone={hotelDone}
+          brewDone={brewDone}
+          setBrewDone={setBrewDone}
+          setHotelDone={setHotelDone}
+          isLoading={isLoading}
+        />}
       </div>
     </div>
   );

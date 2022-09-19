@@ -10,7 +10,7 @@ mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // sets the name of the DB that our collections are part of
-  dbName: 'users'
+  dbName: 'hotels'
 })
   .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
@@ -18,17 +18,12 @@ mongoose.connect(MONGO_URI, {
 
 
 
-const UserSchema = new mongoose.Schema({
-  nameOfUser: { type: String, required: true, unique: true },
-  nameOfBrewery: { type: String, required: true },
-  nameOfHotel: { type: String, required: true },
-
-  statusOfBrewery: { type: String, required: true },
-  statusOfHotel: { type: String, required: true },
-  created: { type: Date, default: Date.now }
+const HotelSchema = new mongoose.Schema({
+  nameOfHotel: { type: String, required: true, unique: true },
+  action: { type: String, required: true },
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Hotel', HotelSchema);
 
 // You must export your model through module.exports
 // The collection name should be 'student'

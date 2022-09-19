@@ -1,5 +1,5 @@
 const Router = require('express');
-const userController = require('../controllers/userController')
+const hotelController = require('../controllers/hotelController')
 const router = Router();
 
 router.use((req, res, next) => {
@@ -7,20 +7,20 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/', userController.getAllHotels, (req, res) => {
+router.get('/', hotelController.getAllHotels, (req, res) => {
   console.log(`server/routes/api.js.router.get('/'): received request ${req.method} ${req.url}`);
   res.status(200).json({ message: 'api router online' });
 });
 
-router.post('/', userController.postBreweryRecommendation, (req, res) => {
+router.post('/', hotelController.postHotel, (req, res) => {
   console.log(`server/routes/api.js.router.post('/'): received request ${req.method} ${req.url}`);
   res.status(200).json({ message: 'api router online POST' });
 });
 
-router.put('/', userController.changeRecommendation, (req, res) => {
-  console.log(`server/routes/api.js.router.put('/'): received request ${req.method} ${req.url}`);
-  res.status(200).json({ message: 'api router online PUT' });
-});
+// router.put('/', hotelController.changeRecommendation, (req, res) => {
+//   console.log(`server/routes/api.js.router.put('/'): received request ${req.method} ${req.url}`);
+//   res.status(200).json({ message: 'api router online PUT' });
+// });
 
 router.put('*', (req, res, next) => {
   //create and change "recommendation" field
