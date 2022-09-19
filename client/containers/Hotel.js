@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Brewery from './Brewery';
+import { Button } from '@mui/material';
 import axios from 'axios'
 const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
 
@@ -80,11 +81,11 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
                 <div>
                   <img src={ele.optimizedThumbUrls['srpDesktop']}></img>
                 </div>
-                <button onClick={(e) => { hideHotel(ele.name, i) }}>Hide hotel</button>
-                <button id={i} onClick={(e) => { setBrewDone(prevBrew => ({ ...prevBrew, [i]: !brewDone[i] })) }}>
+                <Button onClick={(e) => { hideHotel(ele.name, i) }}>Hide hotel</Button>
+                <Button id={i} onClick={(e) => { setBrewDone(prevBrew => ({ ...prevBrew, [i]: !brewDone[i] })) }}>
                   {!brewDone[i] && ('Click me to show breweries')}
                   {brewDone[i] && ('Click me to hide breweries')}
-                </button>
+                </Button>
                 {brewDone[i] && (<div>
 
                   {ele.breweryList.map((brewery, j) => {

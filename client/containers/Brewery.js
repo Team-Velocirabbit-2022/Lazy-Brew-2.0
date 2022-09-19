@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const Brewery = ({ brewery }) => {
   const [showSpecificBrewery, setShowSpecificBrewery] = useState({})
 

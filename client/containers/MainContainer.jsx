@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
+import { Button } from '@mui/material';
 import axios from 'axios'
 import Hotel from './Hotel';
 
@@ -126,10 +126,10 @@ const MainContainer = () => {
       <label>Check-in Date</label>
       <input type="date" onChange={(e) => setCheckOutDate(e.target.value)}></input>
 
-      <button onClick={(e) => {
+      <Button onClick={(e) => {
         getHotelData();
         setHotelDone(true)
-      }}>See Hotels</button>
+      }}>See Hotels</Button>
 
       <div id="allHotelsWrapper">
         {isLoading || <>Loading...</>}
