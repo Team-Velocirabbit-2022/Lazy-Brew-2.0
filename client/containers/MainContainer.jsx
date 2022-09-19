@@ -132,7 +132,7 @@ const MainContainer = () => {
       }}>See Hotels</Button>
 
       <div id="allHotelsWrapper">
-        {isLoading || <>Loading...</>}
+        {isLoading || <div>Loading...</div>}
 
         {hotelDone && <Hotel
           setHotelList={setHotelList}
@@ -144,7 +144,7 @@ const MainContainer = () => {
           isLoading={isLoading}
         />}
       </div>
-    </div>
+    </div >
   );
 
 }
