@@ -9,14 +9,15 @@ const Hotel = ({ hotelList, hotelDone, brewDone, setBrewDone, setHotelDone, setH
   */
 
   function hideHotel(i) {
-    setHotelDone(false)
-    setHotelList(hotelList.forEach((hotel, index) => {
-      if (index == i) {
-        //this changes the SPECIFIC showHotel to false, however, it is not rendering properly
-        hotel.showHotel = false
-      }
-    }))
+    // setHotelDone(false)
+    // setHotelList(
+    // hotelList.forEach((hotel, index) => {
     console.log(hotelList, 'hotelList')
+    // if (index == i) {
+    //   //this changes the SPECIFIC showHotel to false, however, it is not rendering properly
+    //   hotel.showHotel = false
+    // }
+    // }))
   }
   return (
     <div className='hotelContainer'>Hotel Placeholder

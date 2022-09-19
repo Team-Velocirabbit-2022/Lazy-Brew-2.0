@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffec } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { nanoid } from 'nanoid';
 
@@ -18,19 +18,20 @@ const MainContainer = () => {
   const [brewDone, setBrewDone] = useState(false)
 
   const getHotelData = (destinationId) => {
-    let checkIn = '2022-09-19'
-    let checkOut = '2022-09-22'
+    let checkIn = '2022-10-02'
+    let checkOut = '2022-10-10'
     const optionsProperties = {
       method: 'GET',
       url: 'https://hotels4.p.rapidapi.com/properties/list',
       params: {
         destinationId: destinationId,
         pageNumber: '1',
-        pageSize: '10',
+        pageSize: '5',
         checkIn: checkIn,
         checkOut: checkOut,
         adults1: '1',
-        sortOrder: 'PRICE',
+        // sortOrder: 'PRICE',
+        sortOrder: 'starRatings',
         locale: 'en_US',
         currency: 'USD'
       },
@@ -57,7 +58,7 @@ const MainContainer = () => {
               for (let j = 0; j < beerResponse.data.length; j++) {
 
                 let distanceFromHotel = geodist({ lat: oneProperty.coordinate.lat, lon: oneProperty.coordinate.lon }, { lat: beerResponse.data[j].latitude, lon: beerResponse.data[j].longitude })
-                if (distanceFromHotel > 1) {
+                if (distanceFromHotel > 2) {
                   break
                 }
                 // beerResponse.data['showHotel'] = true

@@ -18,7 +18,7 @@ const Brewery = ({ brewery }) => {
       <div> <span>State:{brewerly.state} </span>  </div>
       <div> <span>Street:{brewerly.street} </span>  </div> */}
       {brewery.website_url && (<div> <span><a href={brewery.website_url}>Website, click here!</a> </span>  </div>)}
-      <button onClick={(e) => { setShowSpecificBrewery(Object.assign(showSpecificBrewery, { show: false })) }}></button>
+      <button onClick={(e) => { setShowSpecificBrewery(Object.assign(showSpecificBrewery, { show: false })) }}>Setting state test lmao</button>
     </div>
 
   )
