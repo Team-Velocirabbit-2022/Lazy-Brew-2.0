@@ -1,11 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { nanoid } from 'nanoid';
 
 import axios from 'axios'
 import Hotel from './Hotel';
-import Brewery from './Brewery';
-import getHotelList from '../actions/query'
 
 var geodist = require('geodist')
 
@@ -17,9 +14,9 @@ const MainContainer = () => {
   const [hotelDone, setHotelDone] = useState(false)
   const [brewDone, setBrewDone] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [exclusionList, setExclusionList] = useState([{}])
 
   const [hotelResultNumber, setHotelResultNumber] = useState(5)
+
   const getHotelData = (destinationId) => {
     let checkIn = '2022-10-02'
     let checkOut = '2022-10-10'
@@ -33,7 +30,6 @@ const MainContainer = () => {
         checkIn: checkIn,
         checkOut: checkOut,
         adults1: '1',
-        // sortOrder: 'PRICE',
         sortOrder: 'starRatings',
         locale: 'en_US',
         currency: 'USD'
@@ -45,13 +41,7 @@ const MainContainer = () => {
     };
     setIsLoading(false)
 
-    // axios.get('http://localhost:3000/api')
-    //   .then((dbResponse) => {
-    //     console.log(dbResponse, 'dbResponse')
-    //   })
-    //   .catch((e) => {
-    //     console.error('error is here')
-    //   })
+
     axios.request(optionsProperties)
       .then((response) => {
         let propertiesResult = response.data.data.body.searchResults.results
@@ -80,14 +70,6 @@ const MainContainer = () => {
               }
               oneProperty.breweryList = breweryArray
               oneProperty.breweryListLength = breweryArray.length
-              //just have to change this to make a db call
-
-              // if (oneProperty.name == 'citizenM Los Angeles Downtown') {
-              //   oneProperty.showHotel = false
-              // } else {
-              //   oneProperty.showHotel = true
-              // }
-              oneProperty.showHotel = true
               finalHotelData.push(oneProperty)
               setHotelList(current => [...current, oneProperty])
             })
@@ -101,7 +83,6 @@ const MainContainer = () => {
         console.error(e, 'hotels not compelte')
       })
   }
-
 
   return (
     <div id="main_wrapper">
@@ -121,20 +102,10 @@ const MainContainer = () => {
           <option value={}>Fort Collins</option>
           <option value={}>Houston</option>*/}
         </select>
-        {/*<input 
-          id='input-box'
-          type="text" 
-        />
-        <button id='locationButton' onClick={getHotel}>Search 
-        </button> */}
         <button onClick={(e) => setHotelDone(true)}>See hotels</button>
 
       </div>
       <div id="hotel_brewery_wrapper">
-        {/* <Hotel hotelList={hotelList} brewList={brewList} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} /> */}
-        {/* <Hotel hotelList={hotelList.sort((a, b) => {
-          return (a.brewerlyListLength > b.brewerlyListLength ? 1 : -1)
-        })} hotelDone={hotelDone} brewDone={brewDone} setBrewDone={setBrewDone} setHotelDone={setHotelDone} /> */}
         {isLoading || <>Loading...</>}
 
         {hotelDone && <Hotel
