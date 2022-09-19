@@ -3,7 +3,10 @@ $conBg: #4A94A8;
 $textColor: #2B293C;
 $textBg: #E2D9CA;
 
-
+.convenientFont{
+    font-size: 18px;
+    font-weight: 600;
+}
 body {
     background-color: $bg;
     color: $textColor
