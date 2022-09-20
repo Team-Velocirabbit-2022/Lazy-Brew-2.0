@@ -54,8 +54,8 @@ const MainContainer = () => {
       },
       headers: {
         //have to reapply for the API key when fetch no longer works: https://rapidapi.com/apidojo/api/hotels4
-            //example: AXIOS error code
-        'X-RapidAPI-Key': 'ac1503ca17msh87ba44b85e4dc48p118ae8jsn253f64ec70de',
+        //example: AXIOS error code
+        'X-RapidAPI-Key': 'a3d20fff95mshf7a26c3d8f9e65cp1b474bjsn3fd4a5e652e7',
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
       }
     };
@@ -109,8 +109,9 @@ const MainContainer = () => {
 
   return (
     <div id="main_wrapper">
-      <div id='lazyBrew-header'><h1>Lazy Brew</h1></div>
-      <label>Select Destination</label>
+      <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
+      <br />
+      <label>Select Destination</label>/
       <select onChange={(e) => setCity(e.target.value)}>
         <option value="" disabled selected>Select Your City</option>
         <option value={'1506246'}>New York</option>
