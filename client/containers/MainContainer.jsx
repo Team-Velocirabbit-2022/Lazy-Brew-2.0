@@ -107,7 +107,23 @@ const MainContainer = () => {
       })
   }
 
+  const navBar = (
+  <nav>
+  <a class="logo">
+    Lazy Brew
+  </a>
+  <span class="nav-links">
+    <a><i class="login">Login</i></a>
+    <a><i class="signup">Sign Up</i></a>
+  </span>
+</nav>
+);
+
   return (
+    <div>
+    {navBar}
+    <div className="FlexDisplay">
+    <div className="ContainerMainContainer">
     <div id="main_wrapper">
       <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
       <br />
@@ -132,7 +148,7 @@ const MainContainer = () => {
         getHotelData();
         setHotelDone(true)
       }}>See Hotels</Button>
-
+            
       <div id="allHotelsWrapper">
         {isLoading || <div>Loading...</div>}
 
@@ -146,9 +162,12 @@ const MainContainer = () => {
           isLoading={isLoading}
         />}
       </div>
-    </div >
+    </div>
+    </div>
+    </div>
+    </div>
   );
 
-}
+};
 
 export default connect(mapStateToProps, null)(MainContainer);

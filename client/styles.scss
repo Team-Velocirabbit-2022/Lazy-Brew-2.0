@@ -1,39 +1,87 @@
-$bg: #6A4973;
-$conBg: #4A94A8;
-$textColor: #2B293C;
-$textBg: #E2D9CA;
+$bg: #000000;
+$conBg: #ffbf01;
+$textColor: #000000;
+$textBg: #FFFFFF;
 
 .convenientFont{
     font-size: 18px;
     font-weight: 600;
 }
+
 body {
     background-color: $bg;
     color: $textColor
 }
 
+nav {
+    background-color: $conBg;
+    height: 3.3em;
+    line-height: 3.3em;
+    padding: 0 13.5em;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+
+.nav-links {
+    margin-left: 8em;
+    width: 100%;
+}
+
+
+.nav-links>a {
+    margin-left: 0.5em;
+    width: 100%;
+}
+
+.nav-links i {
+    transform: scale(1.6);
+    color: #252525;
+    vertical-align: middle;
+}
+
+
 #lazyBrew-header {
     background-color: $textBg;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
 }
 
 .appContainer {
+//    display: flex;
+    // justify-content: center;
+    // align-items: center;
+}
+.ContainerMainContainer {
     display: flex;
-    justify-content: center;
+
+    width: 50%;
+    align-self: center;
 }
 
-// div{
-//     border-style: solid;
-//     border-width: 1px;
-// }
+.FlexDisplay {
+    display:flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 #main_wrapper {
     display: flex;
+    flex: auto;
+    position: relative;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     background-color: $textBg;
     text-align: center;
+    width: 50%;
+    align-self: center;
+    left: 50%;
+    right: 50%;
+   
+    // left: 600px;
 }
 
 #allHotelsWrapper {
