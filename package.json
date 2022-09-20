@@ -1,11 +1,11 @@
 {
-  "name": "nerm-template",
+  "name": "LazyBrew",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
     "watch": "webpack --watch",
     "dev": "NODE_ENV=development webpack serve --open"
@@ -19,20 +19,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seadubs/nerm-template.git"
+    "url": "git+https://github.com/convenientFinds/LazyBrew"
   },
-  "author": "",
+  "author": "convenientFinds",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/seadubs/nerm-template/issues"
+    "url": "https://github.com/convenientFinds/LazyBrew/"
   },
-  "homepage": "https://github.com/seadubs/nerm-template#readme",
+  "homepage": "https://github.com/convenientFinds/LazyBrew#readme",
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.10.6",
+    "axios": "^0.27.2",
     "express": "^4.18.1",
+    "geodist": "^0.2.1",
     "mongoose": "^6.4.7",
+    "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "react-router": "^6.4.0",
+    "react-router-dom": "^6.4.0",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",

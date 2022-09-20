@@ -1,0 +1,129 @@
+$bg: #6A4973;
+$conBg: #4A94A8;
+$textColor: #2B293C;
+$textBg: #E2D9CA;
+
+.convenientFont{
+    font-size: 18px;
+    font-weight: 600;
+}
+body {
+    background-color: $bg;
+    color: $textColor
+}
+
+#lazyBrew-header {
+    background-color: $textBg;
+    display: flex;
+    justify-content: center;
+}
+
+.appContainer {
+    display: flex;
+    justify-content: center;
+}
+
+// div{
+//     border-style: solid;
+//     border-width: 1px;
+// }
+#main_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $textBg;
+    text-align: center;
+}
+
+#allHotelsWrapper {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: $conBg
+}
+
+#allHotelsWrapper div {
+    margin: 5px;
+}
+
+.hotelcontainer {
+    background-color: pink;
+    width: 45%;
+}
+
+
+#input-box {
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#locationButton {
+    padding: 8px;
+    border-radius: 8px;
+    border-style: none;
+}
+
+.allBreweriesWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.breweryGridContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "content content"
+        "content content"
+        "content content"
+        "footer footer";
+    background-color: $textBg;
+    margin: 1em;
+}
+
+.box {
+    background-color: $textBg;
+    margin: 0em;
+}
+
+.header {
+    grid-area: header;
+    background-color: $textBg;
+}
+
+.content {
+    grid: content;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.hotelGridContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "content content"
+        "content content"
+        "content content"
+        "content content"
+        "footer footer";
+    background-color: $textBg;
+}
+
+.hotel {
+    background-color: $textBg;
+    margin: 1em;
+}
+
+.hotelWrapper {
+    background-color: $textBg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

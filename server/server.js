@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
 const api = require('./routes/api');
-
-const PORT = process.env.EXPRESS_PORT || 3000;
+const cors = require('cors')
+const PORT = 3000;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Log all rquests as we build
+
+app.use(cors())
 app.use((req, res, next) => {
   console.log(`server/app.js: received request ${req.method} ${req.url}`);
   next();
