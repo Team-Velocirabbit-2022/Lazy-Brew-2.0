@@ -3,6 +3,8 @@ import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import {UserContext} from '../App';
 import { GoogleLogin } from 'react-google-login';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 // All the standard imports. useNavigate is used to navigate to another node.
 
