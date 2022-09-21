@@ -6,9 +6,13 @@ import './styles.scss'
 const App = () => {
   return (
     <div className='appContainer'>
-      <MainContainer />
+      <div>
+        <MainContainer />
+      </div>
+      
     </div>
   );
 };
 
 export default App;
+//asdflk
