@@ -4,9 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
 import Login from './containers/login';
-
 import SignUp from './containers/signup';
-
 import './styles.scss'
 
 

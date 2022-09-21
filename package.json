@@ -33,6 +33,7 @@
     "@material-ui/core": "^4.12.4",
     "@mui/material": "^5.10.6",
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "gapi-script": "^1.2.0",
     "geodist": "^0.2.1",
