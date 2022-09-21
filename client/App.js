@@ -13,11 +13,21 @@ import './styles.scss'
 const UserContext = createContext([{}, () => {}]);
 
 const App = () => {
+
+  const [userId, setUserId] = useState(null);
+
   return (
     
     <div className='appContainer'>
       <div>
-        <MainContainer />
+      <UserContext.Provider value={[userId, setUserId]}>
+        <Routes>
+            <Route index element = {<MainContainer />} />
+            <Route path="/" element={<MainContainer />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+        </Routes>
+        </UserContext.Provider>
       </div>
       
     </div>

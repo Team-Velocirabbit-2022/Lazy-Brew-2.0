@@ -7,6 +7,8 @@ import Login from './login';
 import SignUp from './signup';
 
  const Navbar = () => {
+  // const navigate = useNavigate();
+  // return navigate('/login')
 
 
   const handleClicklogin = () => {
@@ -26,12 +28,14 @@ import SignUp from './signup';
                     <span className='Brand'><h1> Lazy Brew </h1></span>
                 
                 
-
+                    {/*  <div className="white-key" onClick={this.handleClick1}> */}
 
                 <img src='https://i.imgur.com/SuDASN5.png' className='logo-design'></img>
 
-                <a className='login'    href='#'> Log In</a>
-                <a className='signup'    href='#'>Sign Up</a>
+                  
+                <a className='login'    href='#' onClick={() => {handleClicklogin}}> Log In</a>
+                <a className='signup'    href='#' onClick={() => {handleClicksignup}}>Sign Up</a>
+                 
                 </div>
 
                 
