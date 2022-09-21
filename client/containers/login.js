@@ -2,6 +2,7 @@
 import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
+import { GoogleLogin } from 'react-google-login';
 
 
 
@@ -23,6 +24,9 @@ const Login = () => {
   // above is our state. userId is important to pass along when the user logs in. 
   // errorMessages display when the user logs in with an incorrect username or PW.
   // isSubmitted is not used at the moment, but could be used during iteration.
+
+  const clientID= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
+  const clientSecret = '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';
 
 
 
@@ -87,13 +91,32 @@ const Login = () => {
 
   // html code for Google Login button
 
- const googleLogin = (
+   // code for login form
+   const onSuccess = (res) => {
+    console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
+}
+// html code for Google Login button
 
-    <div className="googleLogin">
-        THIS IS WHERE GOOGLE BUTTON GOES
-    </div>
+const onFailure = (res) => {
+    console.log("LOGIN FAILED! res: ", res)
+}
 
- ) 
+  const googleLogin = function Login() {
+
+    return(
+        <div id="signInButton">
+            <GoogleLogin
+            clientId  = {clientID}
+            buttonText="Login"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            sSignedIn={true}
+        />
+        </div>
+    )
+
+  }
 
   // this is a variable containing the form and the submit/signup buttons
 
