@@ -9,8 +9,18 @@ $textBg: #FFFFFF;
 }
 
 body {
-    background-color: $bg;
-    color: $textColor
+    background-color: #000000;
+    // background: url("https://images.squarespace-cdn.com/content/v1/5e0371d9c4faa30823a5c83f/68c15e1e-559e-4820-8d52-31ad5d7186bd/beer-12+%282%29.jpg%22);
+    // background: url("https://www.wearegoldcoast.com.au/wp-content/uploads/2020/12/feature.jpg%22);
+    background: url("https://i.imgur.com/55ZQJbz.png%22");
+    // background: url("https://popmenucloud.com/ijhvmzns/3cbcf79f-1811-4f2d-b5d4-17deec46fb76.jpg%22);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    // filter: grayscale(50);
+    // background-color: (0, 0, 0, 0.2);
+    color: $textColor;
+    z-index: 1;
 }
 
 .Brand {
