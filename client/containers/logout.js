@@ -5,6 +5,10 @@ const clientSecret = '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';
 
 function Logout() {
     
+    const onSuccess = () => {
+        console.log("Log out successfull!")
+    }
+
     return (
         <div id="signOutButton">
             <GoogleLogout
@@ -19,4 +23,4 @@ function Logout() {
 
 
 
-export default GoogleLogout;
+export default Logout;

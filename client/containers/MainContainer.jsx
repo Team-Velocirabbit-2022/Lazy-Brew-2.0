@@ -5,6 +5,10 @@ import axios from 'axios'
 import Hotel from './Hotel';
 import Navbar from './navbar';
 
+import Login from './components/login';
+import Logout from './components/logout';
+import { gapi } from 'gapi-script';
+
 //library for calculating distance using longitude/latitude
 var geodist = require('geodist')
 
