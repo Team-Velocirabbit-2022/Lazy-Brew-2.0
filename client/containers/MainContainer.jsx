@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@mui/material';
 import axios from 'axios'
 import Hotel from './Hotel';
+import Navbar from './navbar';
 
 //library for calculating distance using longitude/latitude
 var geodist = require('geodist')
@@ -107,22 +108,10 @@ const MainContainer = () => {
       })
   }
 
-  const navBar = (
-  <nav>
-  <a class="logo">
-    Lazy Brew
-  </a>
-  <span class="nav-links">
-    <a><i class="login">Login</i></a>
-    <a><i class="signup">Sign Up</i></a>
-  </span>
-</nav>
-);
-
   return (
     <div>
-    {navBar}
-    <div className="FlexDisplay">
+      <Navbar />
+    <div className="FlexDispl">
     <div className="ContainerMainContainer">
     <div id="main_wrapper">
       <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>

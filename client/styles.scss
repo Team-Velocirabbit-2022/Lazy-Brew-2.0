@@ -1,4 +1,4 @@
-$bg: #000000;
+$bg: rgba(0, 0, 0, 0.882);
 $conBg: #ffbf01;
 $textColor: #000000;
 $textBg: #FFFFFF;
@@ -13,33 +13,59 @@ body {
     color: $textColor
 }
 
+.Brand {
+    position: absolute;
+    left: 10%;
+    top: 1.5em;
+}
+
+.navbar {
+    display: -ms-inline-flexbox;
+    display: flex;
+    align-items: center;
+    // vertical-align: middle;
+}
+
+.signup {
+    position: absolute;
+    right: 5%;
+    top: 1.5em;
+
+}
+
+
+.login {
+    position: absolute;
+    right: 12%;
+    top: 1.5em;
+}
+
 nav {
     background-color: $conBg;
-    height: 3.3em;
+    // height: 3.3em;
+    height:5em;
     line-height: 3.3em;
     padding: 0 13.5em;
+    width: 100%;
+    vertical-align: middle;
 }
 
 .logo {
     text-decoration: none;
 }
 
+.logo-design{
+    height: 5em;
+    width: 5em;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+
 
 .nav-links {
-    margin-left: 8em;
-    width: 100%;
-}
-
-
-.nav-links>a {
-    margin-left: 0.5em;
-    width: 100%;
-}
-
-.nav-links i {
-    transform: scale(1.6);
-    color: #252525;
-    vertical-align: middle;
+    margin-left: 8em
 }
 
 
@@ -76,10 +102,11 @@ nav {
     align-items: center;
     background-color: $textBg;
     text-align: center;
-    width: 50%;
+    max-width: 100%;
     align-self: center;
-    left: 50%;
-    right: 50%;
+    left: 55%;
+    right: 45%;
+    margin-top: 30px;
    
     // left: 600px;
 }
