@@ -7,7 +7,7 @@ import React from 'react'
             <div className='logo'>
 
                 
-                    <span className='Brand'> LazyBrew </span>
+                    <span className='Brand'><h1> Lazy Brew </h1></span>
                 
                 
 

@@ -16,14 +16,12 @@ body {
 .Brand {
     position: absolute;
     left: 10%;
-    top: 1.5em;
+    top: 0.2em;
 }
 
 .navbar {
-    // display: -ms-inline-flexbox;
     display: flex;
     align-items: center;
-    // vertical-align: middle;
 }
 
 .signup {
@@ -40,10 +38,17 @@ body {
     top: 1.5em;
 }
 
+a:link {
+    font-size: 18px;
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
 nav {
     background-color: $conBg;
     // height: 3.3em;
-    height:5em;
+    height: 5em;
     line-height: 3.3em;
     padding: 0 13.5em;
     width: 100%;
@@ -197,16 +202,22 @@ nav {
 }
 
 .hotelGridContainer {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas:
-        "header header"
-        "content content"
-        "content content"
-        "content content"
-        "content content"
-        "footer footer";
-    background-color: $textBg;
+    // display: grid;
+    // grid-template-columns: 1fr 2fr;
+    // grid-template-areas:
+    //     "header header"
+    //     "content content"
+    //     "content content"
+    //     "content content"
+    //     "content content"
+    //     "footer footer";
+    // background-color: $textBg;
+}
+
+.hide-button{
+    width: 5px;
+    margin-right: 99%;
+    background-color: black
 }
 
 .hotel {
