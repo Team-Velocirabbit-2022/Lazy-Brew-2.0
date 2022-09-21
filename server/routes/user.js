@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const express = require('express');
 const router = express.Router();
-const userController = require('server/controllers/userController.js');
+const userController = require('../controllers/userController');
 
-router.post('/new_user', userController.createNewUser,  (req, res) => {
+router.post('/new_user', userController.createNewUser, (req, res) => {
   res.status(200).json(res.locals.userId);
 });
 

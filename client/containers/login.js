@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 import { GoogleLogin } from 'react-google-login';
+import APIFunctions from './/utils/APIFunctions.js';
 
 
 
@@ -50,7 +51,7 @@ const Login = () => {
     // document.forms[0] grabs the value of whatever text is in the username and PW input fields
 
 
-    // const userData = await ...
+  const userData = await APIFunctions.verifyLogin(uname.value, pass.value);
     // ^^^ here is where we make a get request to our database to see if the entered username
     // and password are stored in our database. if they are, we will return the userId
 
@@ -122,6 +123,12 @@ const onFailure = (res) => {
 
   const renderForm = (
 
+    <div className="FlexDisplay">
+    <div className="ContainerMainContainer">
+    <div id="main_wrapper">
+    <div id="allHotelsWrapper">
+    <div className='hotelWrapper'>
+
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -137,13 +144,18 @@ const onFailure = (res) => {
         <div className="button-container">
           <input type="submit" />
         </div>
-        {googleLogin}
+        {/* {googleLogin} */}
         <div className="button-container">
           <input type="button" value="Sign Up Here" onClick={() => handleClick()}/>
         </div>
       </form>
     </div>
 
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
   );
 
   return (
