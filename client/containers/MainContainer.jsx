@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@mui/material';
 import axios from 'axios'
 import Hotel from './Hotel';
+import Navbar from './navbar';
 
 //library for calculating distance using longitude/latitude
 var geodist = require('geodist')
@@ -108,7 +109,12 @@ const MainContainer = () => {
   }
 
   return (
-    <div id="main_wrapper">
+    <div>
+      <Navbar />
+      /* */
+    <div className="FlexDisplay">
+    <div className="ContainerMainContainer">
+    <div id="main_wrapper2">
       <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
       <br />
       <label>Select Destination</label>/
@@ -132,9 +138,20 @@ const MainContainer = () => {
         getHotelData();
         setHotelDone(true)
       }}>See Hotels</Button>
+            
+    {isLoading || <div>Loading...</div>}
+    </div>
+    </div>
+    </div>
 
-      <div id="allHotelsWrapper">
-        {isLoading || <div>Loading...</div>}
+
+
+
+
+    {/* <div className="ContainerMainContainer">
+          <div id="main_wrapper">
+          <div id="allHotelsWrapper"> */}
+ 
 
         {hotelDone && <Hotel
           setHotelList={setHotelList}
@@ -145,10 +162,14 @@ const MainContainer = () => {
           setHotelDone={setHotelDone}
           isLoading={isLoading}
         />}
-      </div>
-    </div >
-  );
+      {/* </div>
+          </div>
 
-}
+          </div> */}
+
+
+    </div>);
+
+};
 
 export default connect(mapStateToProps, null)(MainContainer);

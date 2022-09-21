@@ -48,6 +48,11 @@ module.exports = {
         },
       },
       {
+        test:/\.(png)$/i,
+        type: 'asset/resource',
+        
+    },
+      {
         test: /\.s?css$/,
         use: [
           // Compiles Sass to CSS

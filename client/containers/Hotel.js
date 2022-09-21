@@ -66,25 +66,23 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
         .map((ele, i) => {
           if (specificHotel[i]) {
             return (
+              <div className="ContainerMainContainer">
+          <div id="main_wrapper">
+          <div id="allHotelsWrapper">
               <div className='hotelWrapper' key={i}>
+              <Button className="hide-button" onClick={(e) => { hideHotel(ele.name, i) }}>X</Button>
+              <div className='hotel header'><h2>{ele.name}</h2></div>
+                  <div className='hotel content'><img src={ele.optimizedThumbUrls['srpDesktop']}></img></div>
                 <div className='hotelGridContainer'>
-                  <div className='hotel header'><h2>{ele.name}</h2></div>
-                  <div className='hotel content'><b>Nearby Breweries:</b></div>
-                  <div className='hotel content'>{ele.breweryListLength}</div>
-                  <div className='hotel content'><b>Hotel Rating:</b></div>
-                  <div className='hotel content'>{ele.starRating}/5</div>
-                  <div className='hotel content'><b>Address:</b> </div>
+                <div className='hotel content'><b>Hotel Rating:  </b>{ele.starRating}/5</div>
+                  {/* <div className='hotel content'></div> */}
+                  <div className='hotel content'><b>Address:  </b>{ele.address.streetAddress ? (<div className='hotel content'>{ele.address.streetAddress}, {ele.address.locality}, {ele.address.region}, {ele.address.postalCode}</div>) : (<div className='hotel content'>No address provided</div>)}</div>
                   {/* if there's an address, display it */}
-                  {ele.address.streetAddress ? (<div className='hotel content'>{ele.address.streetAddress}, {ele.address.locality}, {ele.address.region}, {ele.address.postalCode}</div>) : (<div className='hotel content'>No address provided</div>)}
+                  <div className='hotel content'><b>Nearby Breweries:   </b>{ele.breweryListLength}</div>
                 </div>
-
-                <div>
-                  <img src={ele.optimizedThumbUrls['srpDesktop']}></img>
-                </div>
-                <Button onClick={(e) => { hideHotel(ele.name, i) }}>Hide hotel</Button>
                 <Button id={i} onClick={(e) => { setBrewDone(prevBrew => ({ ...prevBrew, [i]: !brewDone[i] })) }}>
-                  {!brewDone[i] && ('Click me to show breweries')}
-                  {brewDone[i] && ('Click me to hide breweries')}
+                  {!brewDone[i] && ('                 show breweries nearby')}
+                  {brewDone[i] && ('                 hide breweries')}
                 </Button>
                 {brewDone[i] && (<div>
 
@@ -94,11 +92,18 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
                     )
                   })}
                 </div>)}
+                </div>
+               </div>
+
               </div>
+              </div>
+              
             )
           }
 
         })}
+
+        
 
     </div>
   )
