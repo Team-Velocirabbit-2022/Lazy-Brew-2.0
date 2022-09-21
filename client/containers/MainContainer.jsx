@@ -5,8 +5,8 @@ import axios from 'axios'
 import Hotel from './Hotel';
 import Navbar from './navbar';
 
-import Login from './components/login';
-import Logout from './components/logout';
+import Login from './login'
+import Logout from './logout';
 import { gapi } from 'gapi-script';
 
 //library for calculating distance using longitude/latitude
@@ -176,4 +176,4 @@ const MainContainer = () => {
 
 };
 
-export default connect(mapStateToProps, null)(MainContainer);
+export default MainContainer;
