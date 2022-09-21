@@ -13,6 +13,19 @@ hotelController.getAllHotels = (req, res, next) => {
       res.json(result);
     }
 
+    
+    // if (err) {
+    //   return next(
+    //     createErr({
+    //     method: 'getAllusers',
+    //     type: 'db query error',
+    //     err,
+    //   }));
+    // } else {
+    //   res.locals.dbHotelData = result;
+    //   next();
+    // }
+    
   })
 }
 
