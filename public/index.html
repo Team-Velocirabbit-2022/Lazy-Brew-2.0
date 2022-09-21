@@ -3,9 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- This is us specifying your app's client ID -->
+    <meta name="google-signin-client_id" content="830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com"/>
+
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Production</title>
     <script defer="defer" src="build/bundle.js"></script>
+    <!-- This is for Google Api OAuth2 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- This is the gapi method -->
+    <script>
+      function start() {
+        // 2. Initialize the JavaScript client library.
+        gapi.client.init({
+          'apiKey': 'YOUR_API_KEY',
+          // clientId and scope are optional if auth is not required.
+          'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+          'scope': 'profile',
+        }).then(function() {
+          // 3. Initialize and make the API request.
+          return gapi.client.request({
+            'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
+          })
+        }).then(function(response) {
+          console.log(response.result);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      };
+      // 1. Load the JavaScript client library.
+      gapi.load('client', start);
+      </script>
   </head>
   <body id="root">
 
