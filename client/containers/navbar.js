@@ -48,4 +48,4 @@ import SignUp from './signup';
   )
 }
 
-export default Navbar
+// export default Navbar
