@@ -66,6 +66,9 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
         .map((ele, i) => {
           if (specificHotel[i]) {
             return (
+              <div className="ContainerMainContainer">
+          <div id="main_wrapper">
+          <div id="allHotelsWrapper">
               <div className='hotelWrapper' key={i}>
                 <div className='hotelGridContainer'>
                   <div className='hotel header'><h2>{ele.name}</h2></div>
@@ -94,11 +97,18 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
                     )
                   })}
                 </div>)}
+                </div>
+               </div>
+
               </div>
+              </div>
+              
             )
           }
 
         })}
+
+        
 
     </div>
   )

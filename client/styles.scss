@@ -20,7 +20,7 @@ body {
 }
 
 .navbar {
-    display: -ms-inline-flexbox;
+    // display: -ms-inline-flexbox;
     display: flex;
     align-items: center;
     // vertical-align: middle;
@@ -58,8 +58,8 @@ nav {
     height: 5em;
     width: 5em;
     position: absolute;
-    left: 50%;
-    right: 50%;
+    left: 47.8%;
+    right: 52.2%;
 }
 
 
@@ -82,7 +82,6 @@ nav {
 }
 .ContainerMainContainer {
     display: flex;
-
     width: 50%;
     align-self: center;
 }
@@ -100,13 +99,31 @@ nav {
     flex-direction: column;
     // justify-content: center;
     align-items: center;
+    // background-color: $textBg;
+    text-align: center;
+    max-width: 100%;
+    align-self: center;
+    left: 50%;
+    right: 50%;
+    // margin-top: 30px;
+   
+    // left: 600px;
+}
+
+#main_wrapper2 {
+    display: flex;
+    flex: auto;
+    position: relative;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
     background-color: $textBg;
     text-align: center;
     max-width: 100%;
     align-self: center;
-    left: 55%;
-    right: 45%;
-    margin-top: 30px;
+    left: 50%;
+    right: 50%;
+    // margin-top: 30px;
    
     // left: 600px;
 }
@@ -117,7 +134,8 @@ nav {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: $conBg
+    background-color: $conBg;
+    margin-top: 30px;
 }
 
 #allHotelsWrapper div {
@@ -197,8 +215,10 @@ nav {
 }
 
 .hotelWrapper {
+    margin-top: 30px;
     background-color: $textBg;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 20px;
 }

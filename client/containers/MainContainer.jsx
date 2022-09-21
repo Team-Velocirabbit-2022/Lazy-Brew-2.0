@@ -111,9 +111,10 @@ const MainContainer = () => {
   return (
     <div>
       <Navbar />
-    <div className="FlexDispl">
+      /* */
+    <div className="FlexDisplay">
     <div className="ContainerMainContainer">
-    <div id="main_wrapper">
+    <div id="main_wrapper2">
       <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
       <br />
       <label>Select Destination</label>/
@@ -138,8 +139,19 @@ const MainContainer = () => {
         setHotelDone(true)
       }}>See Hotels</Button>
             
-      <div id="allHotelsWrapper">
-        {isLoading || <div>Loading...</div>}
+    {isLoading || <div>Loading...</div>}
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+    {/* <div className="ContainerMainContainer">
+          <div id="main_wrapper">
+          <div id="allHotelsWrapper"> */}
+ 
 
         {hotelDone && <Hotel
           setHotelList={setHotelList}
@@ -150,12 +162,13 @@ const MainContainer = () => {
           setHotelDone={setHotelDone}
           isLoading={isLoading}
         />}
-      </div>
-    </div>
-    </div>
-    </div>
-    </div>
-  );
+      {/* </div>
+          </div>
+
+          </div> */}
+
+
+    </div>);
 
 };
 
