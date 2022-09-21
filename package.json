@@ -37,6 +37,7 @@
     "geodist": "^0.2.1",
     "mongoose": "^6.4.7",
     "nanoid": "^4.0.0",
+    "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
