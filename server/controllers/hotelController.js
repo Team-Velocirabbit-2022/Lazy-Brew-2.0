@@ -15,6 +15,8 @@ hotelController.getAllHotels = (req, res, next) => {
 
   })
 }
+
+// post to db - hotel to hide
 hotelController.postHotel = async (req, res, next) => {
   console.log(req.body)
   try {
