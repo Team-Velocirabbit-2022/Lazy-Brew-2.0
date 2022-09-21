@@ -83,7 +83,7 @@ const Login = () => {
       <div className="error">{errorMessages.message}</div>
     );
 
-  // code for login form
+  // html code for Google Login button
 
  const googleLogin = (
 
@@ -93,6 +93,7 @@ const Login = () => {
 
  ) 
 
+  // this is a variable containing the form and the submit/signup buttons
 
   const renderForm = (
 
@@ -121,7 +122,7 @@ const Login = () => {
   );
 
   return (
-    <div className="app">
+    <div className="login-page">
       <div className="login-form">
         <div className="title">Sign In</div>
         {renderForm}
