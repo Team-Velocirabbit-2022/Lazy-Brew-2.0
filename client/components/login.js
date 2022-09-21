@@ -6,8 +6,6 @@ import { GoogleLogin } from 'react-google-login';
 
 // All the standard imports. useNavigate is used to navigate to another node.
 
-const clientId= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
-const clientSecret = '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';
 /**
  * ********************
  * @module Login
@@ -15,17 +13,20 @@ const clientSecret = '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';
  **/
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [userId, setUserId] = useContext(UserContext);
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // above is our state. userId is important to pass along when the user logs in. 
-  // errorMessages display when the user logs in with an incorrect username or PW.
-  // isSubmitted is not used at the moment, but could be used during iteration.
-
-
-
+    const navigate = useNavigate();
+    const [userId, setUserId] = useContext(UserContext);
+    const [errorMessages, setErrorMessages] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    
+    // above is our state. userId is important to pass along when the user logs in. 
+    // errorMessages display when the user logs in with an incorrect username or PW.
+    // isSubmitted is not used at the moment, but could be used during iteration.
+    
+    //client id credentials, maybe not a good idea to place them here.
+    const clientId= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
+    const clientSecret = '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';
+    
+    
   const errors = {
     uname: "invalid username",
     pass: "invalid password"
@@ -86,14 +87,30 @@ const Login = () => {
     );
 
   // code for login form
+        const onSuccess = (res) => {
+            console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
+        }
 
- const googleLogin = (
+        const onFailure = (res) => {
+            console.log("LOGIN FAILED! res: ", res)
+        }
 
-    <div className="googleLogin">
-        THIS IS WHERE GOOGLE BUTTON GOES
-    </div>
+ const googleLogin = function Login() {
 
- ) 
+    return(
+        <div id="signInButton">
+            <GoogleLogin
+            clientId  = {clientID}
+            buttonText="Login"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            sSignedIn={true}
+        />
+        </div>
+    )
+
+  }
 
 
   const renderForm = (
@@ -113,7 +130,9 @@ const Login = () => {
         <div className="button-container">
           <input type="submit" />
         </div>
+        <div id="signInButton">
         {googleLogin}
+        </div>
         <div className="button-container">
           <input type="button" value="Sign Up Here" onClick={() => handleClick()}/>
         </div>
@@ -135,3 +154,34 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+/*
+  <script defer="defer" src="build/bundle.js"></script>
+    <!-- This is for Google Api OAuth2 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- This is the gapi method -->
+    <script>
+      function start() {
+        // 2. Initialize the JavaScript client library.
+        gapi.client.init({
+          'apiKey': 'YOUR_API_KEY',
+          // clientId and scope are optional if auth is not required.
+          'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+          'scope': 'profile',
+        }).then(function() {
+          // 3. Initialize and make the API request.
+          return gapi.client.request({
+            'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
+          })
+        }).then(function(response) {
+          console.log(response.result);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      };
+      // 1. Load the JavaScript client library.
+      gapi.load('client', start);
+      </script>
+*/
