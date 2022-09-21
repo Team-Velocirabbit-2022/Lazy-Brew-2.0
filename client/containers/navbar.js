@@ -1,6 +1,22 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import MainContainer from './MainContainer.jsx';
+import Login from './login';
+import SignUp from './signup';
 
  const Navbar = () => {
+
+
+  const handleClicklogin = () => {
+    return Navigate('/login')
+  }
+
+  const handleClicksignup = () => {
+    return Navigate('/signup')
+  }
+
   return (
     <div className='navbar'>
         <nav>
