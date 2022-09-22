@@ -140,7 +140,12 @@ const MainContainer = () => {
     Greeting = (
       <div className='greeting'> Welcome back, {userName}.</div>
     )
-  };
+
+  }
+
+  let Picture = (
+    <div className='Picture'></div>
+  )
 
 
   const Navbar = (
