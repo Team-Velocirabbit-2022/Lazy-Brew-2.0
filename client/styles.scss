@@ -33,7 +33,7 @@ body {
     position: absolute;
     right: 5%;
     top: 1.5em;
-
+    z-index: 1;
 }
 
 
@@ -41,6 +41,7 @@ body {
     position: absolute;
     right: 12%;
     top: 1.5em;
+    z-index: 1;
 }
 
 a:link {
@@ -72,7 +73,17 @@ nav {
     right: 52.2%;
 }
 
-
+.greeting{
+    position: absolute;
+    font-size: 25px;
+    top: 3%;
+    // left: 30%;
+    right: 5%;
+    width: 300px;
+    // max-height: 4em;
+    background-color: $conBg;
+    z-index: 2;
+}
 
 .nav-links {
     margin-left: 8em
