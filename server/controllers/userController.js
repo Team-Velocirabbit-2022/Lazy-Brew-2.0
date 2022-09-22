@@ -30,6 +30,7 @@ const userController = {
     const values = [user_name];
     db.query(text, values)
       .then((response) => {
+        console.log('sql query result: ', response.rows);
         //no encrypting currently, just checks for a match of username and password, look at later if time allows
         response.rows.forEach((user) => {
           if (password === user.password) {
@@ -39,7 +40,7 @@ const userController = {
         });
         if (!res.locals.userId) {
           console.log('Username or password are incorrect!');
-          res.locals.id(null); //if password/username doesn't work, set ID to null
+          res.locals.id = null; //if password/username doesn't work, set ID to null
         }
         next();
       })

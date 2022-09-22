@@ -57,9 +57,11 @@ const Login = () => {
 
 
     // Compare user info
+    console.log("What is userData?", userData, typeof userData);
+
     if (userData) {
 
-      console.log("I logged in correctly!!!",userData);
+      // console.log("I logged in correctly in LOGIN.JS!!!", userData);
       setIsSubmitted(true);
       setUserId(userData);
       return navigate('/');
@@ -133,7 +135,6 @@ const onFailure = (res) => {
         <div className="input-container">
           <label>Username </label>
           <input type="text" name="uname"  required />
-          {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
           <label>Password </label>
@@ -141,10 +142,11 @@ const onFailure = (res) => {
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" value="Log In"/>
         </div>
         {/* {googleLogin} */}
         <div className="button-container">
+          Don't have an account?
           <input type="button" value="Sign Up Here" onClick={() => handleClick()}/>
         </div>
       </form>
