@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@mui/material';
+import { Redirect } from 'react-router';
 import axios from 'axios'
 import Hotel from './Hotel';
-import Navbar from './navbar';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
+import Login from './login';
+import SignUp from './signup';
+
 
 import Login from './login'
 import Logout from './logout';
 import { gapi } from 'gapi-script';
 
 //library for calculating distance using longitude/latitude
-var geodist = require('geodist')
+var geodist = require('geodist');
 
 const mapStateToProps = (state) => ({});
 
@@ -112,40 +116,73 @@ const MainContainer = () => {
       })
   }
 
-  return (
-    <div>
-      <Navbar />
-      /* */
+  // const navigate = useNavigate();
+  // return navigate('/login')
+
+  // const handleClicklogin = () => {
+  //   console.log("I clicked the login button!")
+  //   return Navigate('/login')
+
+
+  // }
+
+  // const handleClicksignup = () => {
+  //   return Navigate('/signup')
+  // }
+
+
+  const Navbar = (
+
+    <div className='navbar'>
+      <nav>
+        <div className='logo'>
+          <span className='Brand'><h1> Lazy Brew </h1></span>
+          <img src='https://i.imgur.com/SuDASN5.png' className='logo-design'></img>
+          <div className='login'>
+            <Link to='/login' element={<Login />}>Log In</Link>
+        </div>
+        <div className='signup'>
+        <Link to='/signup' element={<SignUp />}> Sign Up</Link>
+          </div>
+    </div>
+      </nav >
+    </div >
+  )
+
+
+return (
+  <div>
+    {Navbar}
     <div className="FlexDisplay">
-    <div className="ContainerMainContainer">
-    <div id="main_wrapper2">
-      <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
-      <br />
-      <label>Select Destination</label>/
-      <select onChange={(e) => setCity(e.target.value)}>
-        <option value="" disabled selected>Select Your City</option>
-        <option value={'1506246'}>New York</option>
-        <option value={'1439028'}>Los Angeles</option>
-        <option value={'1493604'}>San Francisco</option>
-        <option value={'1633050'}>Hawaii</option>
-        <option value={'780'}>Colorado</option>
+      <div className="ContainerMainContainer">
+        <div id="main_wrapper2">
+          <div><h1 id='lazyBrew-header'>Lazy Brew </h1><span id="convenientFont"><b>by ConvenientFinds</b></span></div>
+          <br />
+          <label>Select Destination</label>/
+          <select onChange={(e) => setCity(e.target.value)}>
+            <option value="" disabled selected>Select Your City</option>
+            <option value={'1506246'}>New York</option>
+            <option value={'1439028'}>Los Angeles</option>
+            <option value={'1493604'}>San Francisco</option>
+            <option value={'1633050'}>Hawaii</option>
+            <option value={'780'}>Colorado</option>
 
 
-      </select>
+          </select>
 
-      <label>Check-in Date</label>
-      <input type="date" onChange={(e) => setCheckInDate(e.target.value)}></input>
-      <label>Check-in Date</label>
-      <input type="date" onChange={(e) => setCheckOutDate(e.target.value)}></input>
+          <label>Check-in Date</label>
+          <input type="date" onChange={(e) => setCheckInDate(e.target.value)}></input>
+          <label>Check-in Date</label>
+          <input type="date" onChange={(e) => setCheckOutDate(e.target.value)}></input>
 
-      <Button onClick={(e) => {
-        getHotelData();
-        setHotelDone(true)
-      }}>See Hotels</Button>
-            
-    {isLoading || <div>Loading...</div>}
-    </div>
-    </div>
+          <Button onClick={(e) => {
+            getHotelData();
+            setHotelDone(true)
+          }}>See Hotels</Button>
+
+          {isLoading || <div>Loading...</div>}
+        </div>
+      </div>
     </div>
 
 
@@ -155,24 +192,24 @@ const MainContainer = () => {
     {/* <div className="ContainerMainContainer">
           <div id="main_wrapper">
           <div id="allHotelsWrapper"> */}
- 
 
-        {hotelDone && <Hotel
-          setHotelList={setHotelList}
-          hotelList={hotelList}
-          hotelDone={hotelDone}
-          brewDone={brewDone}
-          setBrewDone={setBrewDone}
-          setHotelDone={setHotelDone}
-          isLoading={isLoading}
-        />}
-      {/* </div>
+
+    {hotelDone && <Hotel
+      setHotelList={setHotelList}
+      hotelList={hotelList}
+      hotelDone={hotelDone}
+      brewDone={brewDone}
+      setBrewDone={setBrewDone}
+      setHotelDone={setHotelDone}
+      isLoading={isLoading}
+    />}
+    {/* </div>
           </div>
 
           </div> */}
 
 
-    </div>);
+  </div>);
 
 };
 

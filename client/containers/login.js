@@ -1,9 +1,10 @@
 
 import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import {UserContext} from '../App';
+import { UserContext } from '../App';
 import { GoogleLogin } from 'react-google-login';
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import APIFunctions from './/utils/APIFunctions.js';
+
 
 
 // All the standard imports. useNavigate is used to navigate to another node.
@@ -15,22 +16,22 @@ import { GoogleLogin } from 'react-google-login';
  **/
 
 const Login = () => {
-    const navigate = useNavigate();
-    const [userId, setUserId] = useContext(UserContext);
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    
-    // above is our state. userId is important to pass along when the user logs in. 
-    // errorMessages display when the user logs in with an incorrect username or PW.
-    // isSubmitted is not used at the moment, but could be used during iteration.
-    
-    //client id credentials, maybe not a good idea to place them here.
-    const clientId= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
-    const clientSecret = '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';
-    
-    
+  const navigate = useNavigate();
+  const [userId, setUserId] = useContext(UserContext);
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // above is our state. userId is important to pass along when the user logs in. 
+  // errorMessages display when the user logs in with an incorrect username or PW.
+  // isSubmitted is not used at the moment, but could be used during iteration.
+
+  const clientID= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
+  const clientSecret = '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';
+
+
+
   const errors = {
-    uname: "invalid username",
+    uname: "Incorrect login info. Please try again.",
     pass: "invalid password"
   };
 
@@ -49,18 +50,19 @@ const Login = () => {
     // document.forms[0] grabs the value of whatever text is in the username and PW input fields
 
 
-    // const userData = await ...
+  const userData = await APIFunctions.verifyLogin(uname.value, pass.value);
     // ^^^ here is where we make a get request to our database to see if the entered username
     // and password are stored in our database. if they are, we will return the userId
 
 
     // Compare user info
+    console.log("What is userData?", userData, typeof userData);
+
     if (userData) {
 
-      console.log(userData);
+      // console.log("I logged in correctly in LOGIN.JS!!!", userData);
       setIsSubmitted(true);
       setUserId(userData);
-
       return navigate('/');
     }
     else {
@@ -88,16 +90,19 @@ const Login = () => {
       <div className="error">{errorMessages.message}</div>
     );
 
-  // code for login form
-        const onSuccess = (res) => {
-            console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
-        }
+  // html code for Google Login button
 
-        const onFailure = (res) => {
-            console.log("LOGIN FAILED! res: ", res)
-        }
+   // code for login form
+   const onSuccess = (res) => {
+    console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
+}
+// html code for Google Login button
 
- const googleLogin = function Login() {
+const onFailure = (res) => {
+    console.log("LOGIN FAILED! res: ", res)
+}
+
+  const googleLogin = function Login() {
 
     return(
         <div id="signInButton">
@@ -114,37 +119,47 @@ const Login = () => {
 
   }
 
+  // this is a variable containing the form and the submit/signup buttons
 
   const renderForm = (
+
+    <div className="FlexDisplay">
+    <div className="ContainerMainContainer">
+    <div id="main_wrapper">
+    <div id="allHotelsWrapper">
+    <div className='hotelWrapper'>
 
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
           <input type="text" name="uname"  required />
-          {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
           <label>Password </label>
           <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
+          {renderErrorMessage("uname")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" value="Log In"/>
         </div>
-        <div id="signInButton">
-        {googleLogin}
-        </div>
+        {/* {googleLogin} */}
         <div className="button-container">
+          Don't have an account?
           <input type="button" value="Sign Up Here" onClick={() => handleClick()}/>
         </div>
       </form>
     </div>
 
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
   );
 
   return (
-    <div className="app">
+    <div className="login-page">
       <div className="login-form">
         <div className="title">Sign In</div>
         {renderForm}
