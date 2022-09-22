@@ -27,6 +27,9 @@
     "url": "https://github.com/convenientFinds/LazyBrew/"
   },
   "homepage": "https://github.com/convenientFinds/LazyBrew#readme",
+  "jest": {
+    "preset": "@shelf/jest-mongodb"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -39,6 +42,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "geodist": "^0.2.1",
+    "mongodb": "^4.10.0",
     "mongoose": "^6.4.7",
     "nanoid": "^4.0.0",
     "path": "^0.12.7",
@@ -53,6 +57,7 @@
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
     "@babel/preset-react": "^7.18.6",
+    "@shelf/jest-mongodb": "^4.1.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",

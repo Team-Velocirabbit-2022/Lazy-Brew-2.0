@@ -2,7 +2,7 @@
 const request = require('supertest');
 const server = 'http://localhost:3000';
 
-// this test suite is testing the back end server / routing functionality
+// this integration test suite is testing the back end server / routing functionality
 
 // parent describe
 describe('Route integration', () => {

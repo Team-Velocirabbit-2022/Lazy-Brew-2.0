@@ -41,10 +41,6 @@ hotelController.postHotel = async (req, res, next) => {
       return next();
     } else {
       next(
-        // {
-        //   log: 'error in postHotel middleware',
-        //   message: err
-        // }
         createErr({
           method: 'getAllusers',
           type: 'db query error',
