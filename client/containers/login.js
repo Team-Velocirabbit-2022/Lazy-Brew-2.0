@@ -7,6 +7,7 @@ import APIFunctions from './/utils/APIFunctions.js';
 import { refreshTokenSetup } from './refreshTokenSetup';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
 
 
@@ -175,8 +176,11 @@ const onFailure = (res) => {
 
         <GoogleLogin
           onSuccess={credentialResponse => {
-            console.log(credentialResponse)
-            console.log('yes you are signed in. fucking finally');
+            // console.log('this is the credential string', credentialResponse.credential)
+            // console.log('yes you are signed in. fucking finally');
+            let token = credentialResponse.credential
+            let decoded = jwt_decode(token);
+            console.log(decoded)
             
             alert("You Have Successfully Logged In With Your Google Account");
             
