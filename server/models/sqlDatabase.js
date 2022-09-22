@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 
-const PG_URI = 'Insert your database URI here';
+const PG_URI = 'postgres://zckpdypa:keBHZYw_qKL4nuodkzH4OZD1_GZRkLi8@heffalump.db.elephantsql.com/zckpdypa';
 
-// ^^^ we need a unique URI here
+// is this URL correct?
 
 
 const pool = new Pool({

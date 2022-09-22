@@ -1,8 +1,9 @@
-const db = require('server/models/sqlDatabase.js');
+const db = require('../models/sqlDatabase');
 
 const userController = {
 
   createNewUser: (req, res, next) => {
+    console.log("I'M INSIDE USERCONTROLLER.CREATENEWUSER");
     const { user_name, password, email } = req.body;
     const text =
       'INSERT INTO user_account (user_name, password, email) VALUES ($1, $2, $3) RETURNING _id';
