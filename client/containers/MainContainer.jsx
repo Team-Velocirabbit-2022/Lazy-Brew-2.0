@@ -160,8 +160,8 @@ return (
             <option value={'1506246'}>New York</option>
             <option value={'1439028'}>Los Angeles</option>
             <option value={'1493604'}>San Francisco</option>
-            <option value={'1633050'}>Hawaii</option>
-            <option value={'780'}>Colorado</option>
+            <option value={'1633050'}>Honolulu</option>
+            <option value={'780'}>Denver</option>
 
 
           </select>

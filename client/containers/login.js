@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -5,6 +6,8 @@ import { UserContext } from '../App';
 import { GoogleLogin } from 'react-google-login';
 import APIFunctions from './/utils/APIFunctions.js';
 import { refreshTokenSetup } from './refreshTokenSetup';
+
+
 
 
 
@@ -185,6 +188,14 @@ const onFailure = (res) => {
     </div>
 
   )
+
+  
+
+
+
+
+
+  
 
   return (
       
