@@ -7,7 +7,7 @@ import APIFunctions from './/utils/APIFunctions.js';
 import { refreshTokenSetup } from './refreshTokenSetup';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleAuth } from google-auth-library;
+
 
 
 
@@ -177,7 +177,7 @@ const onFailure = (res) => {
           onSuccess={credentialResponse => {
             console.log(credentialResponse)
             console.log('yes you are signed in. fucking finally');
-            console.log(GoogleAuth.currentUser.get())
+            
             alert("You Have Successfully Logged In With Your Google Account");
             
             return navigate('/');
