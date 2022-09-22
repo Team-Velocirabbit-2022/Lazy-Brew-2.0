@@ -8,21 +8,46 @@ const hotelController = {};
 hotelController.getAllHotels = (req, res, next) => {
   Hotel.find({}, (err, result) => {
     if (err) {
-      res.json(err);
+      res.status(400).json(err);
     } else {
-      res.json(result);
+      res.status(200).json(result);
     }
 
+    
+    // if (err) {
+    //   return next(
+    //     createErr({
+    //     method: 'getAllusers',
+    //     type: 'db query error',
+    //     err,
+    //   }));
+    // } else {
+    //   res.locals.dbHotelData = result;
+    //   next();
+    // }
+    
   })
 }
+
+// post to db - hotel to hide
 hotelController.postHotel = async (req, res, next) => {
   console.log(req.body)
   try {
-    Hotel.create({
-      nameOfHotel: req.body.nameOfHotel,
-      action: req.body.action
-    })
-    return next();
+    if (req.body.nameOfHotel && req.body.action) {
+      Hotel.create({
+        nameOfHotel: req.body.nameOfHotel,
+        action: req.body.action
+      })
+      return next();
+    } else {
+      next(
+        createErr({
+          method: 'getAllusers',
+          type: 'db query error',
+          err,
+        })
+      )
+    }
   } catch (err) {
     return next(
       createErr({
