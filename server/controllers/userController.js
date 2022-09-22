@@ -1,4 +1,4 @@
-const db = require('server/models/sqlDatabase.js');
+const db = require('../models/sqlDatabase');
 
 const userController = {
 
