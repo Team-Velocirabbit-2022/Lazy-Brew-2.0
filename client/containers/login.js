@@ -187,9 +187,9 @@ const onFailure = (res) => {
 
         <GoogleLogin
           onSuccess={credentialResponse => {
-            console.log(credentialResponse)
+            console.log(credentialResponse);
             console.log('yes you are signed in. fucking finally');
-            
+            // setUserName();
             alert("You Have Successfully Logged In With Your Google Account");
             
             return navigate('/');
