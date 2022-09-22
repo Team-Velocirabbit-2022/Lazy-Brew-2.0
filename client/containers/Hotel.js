@@ -13,6 +13,9 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
   */
   const [exclusionList, setExclusionList] = useState([]);
 
+  // .../auth/userinfo.email     this is the primary email address information
+  // .../auth/userinfo.profile    This is the userinfo profile
+
   //hook to hide/show hotels after button is clicked
   const [specificHotel, setSpecHotel] = useState({
     0: true,

@@ -3,10 +3,11 @@
 import React, { useState, useContext, useEffect, Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
-import { GoogleLogin } from 'react-google-login';
 import APIFunctions from './/utils/APIFunctions.js';
 import { refreshTokenSetup } from './refreshTokenSetup';
-
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleAuth } from google-auth-library;
 
 
 
@@ -30,8 +31,8 @@ const Login = () => {
   // errorMessages display when the user logs in with an incorrect username or PW.
   // isSubmitted is not used at the moment, but could be used during iteration.
 
-  const clientID= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
-  const clientSecret = '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';
+  // const clientID= '830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com';
+  // const clientSecret = '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';
 
 
   function Login() {
@@ -110,9 +111,9 @@ const Login = () => {
   // html code for Google Login button
 
    // code for login form
-   const onSuccess = (res) => {
-    console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
-}
+//    const onSuccess = (res) => {
+//     console.log("LOGIN SUCCESS! Current user: " , res.profileObj)
+// }
 // html code for Google Login button
 
 const onFailure = (res) => {
@@ -147,7 +148,7 @@ const onFailure = (res) => {
         </div>
         {/* {googleLogin} */}
         <div className="button-container">
-          Don't have an account?
+          {/* Don't have an account? */}
           <input type="button" value="Sign Up Here" onClick={() => handleClick()}/>
         </div>
       </form>
@@ -167,18 +168,25 @@ const onFailure = (res) => {
     <div id="allHotelsWrapper">
     <div className='hotelWrapper'>
     
-    
+    {/*830039597158-6nhs6p1u8eabg6k01r5qtnam1u1fa75q.apps.googleusercontent.com  */}
     
     <div>
+  
+
         <GoogleLogin
-            clientId  = {clientID}
-            buttonText="Login"
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={'single_host_origin'}
-            style={{ marginTop: '100px' }}
-            isSignedIn={true}
+          onSuccess={credentialResponse => {
+            console.log(credentialResponse)
+            console.log('yes you are signed in. fucking finally');
+            console.log(GoogleAuth.currentUser.get())
+            alert("You Have Successfully Logged In With Your Google Account");
+            
+            return navigate('/');
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
         />
+   
     </div>
 
     </div>
