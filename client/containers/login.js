@@ -192,8 +192,11 @@ const onFailure = (res) => {
             // console.log('yes you are signed in. fucking finally');
             let token = credentialResponse.credential
             let decoded = jwt_decode(token);
+            console.log(decoded)
             let googlename = decoded.given_name
+            let googlepic = decoded.picture
             console.log(googlename)
+            setUserName(googlename)
             
             alert("You Have Successfully Logged In With Your Google Account");
             
