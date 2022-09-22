@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const api = require('./routes/api');
-const cors = require('cors')
+const userRouter = require('./routes/user');
+// server/routes/user.js
+const cors = require('cors');
 const PORT = 3000;
 const app = express();
 
@@ -20,7 +22,9 @@ app.use((req, res, next) => {
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
 // Handle API calls via api router
+app.use('/api/user', userRouter);
 app.use('/api', api);
+
 
 // Serve index.html
 app.get('/', (req, res) => {

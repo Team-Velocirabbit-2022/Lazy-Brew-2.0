@@ -9,8 +9,13 @@ $textBg: #FFFFFF;
 }
 
 body {
-    background-color: $bg;
-    color: $textColor
+    background-color: #000000;
+    background: url("https://i.imgur.com/55ZQJbz.png%22");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: $textColor;
+    z-index: 1;
 }
 
 .Brand {
@@ -128,7 +133,7 @@ nav {
     align-self: center;
     left: 50%;
     right: 50%;
-    // margin-top: 30px;
+    margin-top: 30px;
    
     // left: 600px;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const Router = require('express');
 const hotelController = require('../controllers/hotelController')
 const router = Router();
