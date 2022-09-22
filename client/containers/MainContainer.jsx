@@ -37,7 +37,7 @@ const MainContainer = () => {
   const [checkOutDate, setCheckOutDate] = useState('')
   const [selectedCity, setCity] = useState('')
 
-  const [hotelResultNumber, setHotelResultNumber] = useState(5)
+  const [hotelResultNumber, setHotelResultNumber] = useState(9)
 
   const [userId, setUserId] = useContext(UserContext);
   const [userName, setUserName] = useContext(UserContext);
@@ -189,6 +189,9 @@ return (
           <input type="date" onChange={(e) => setCheckOutDate(e.target.value)}></input>
 
           <Button onClick={(e) => {
+            // Reseting hotel display to not show previous values
+            console.log('Attempting to reset the list');
+            setHotelList([]);
             getHotelData();
             setHotelDone(true)
           }}>See Hotels</Button>
