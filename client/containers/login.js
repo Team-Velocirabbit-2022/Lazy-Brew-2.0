@@ -59,10 +59,9 @@ const Login = () => {
     // Compare user info
     if (userData) {
 
-      console.log(userData);
+      console.log("I logged in correctly!!!",userData);
       setIsSubmitted(true);
       setUserId(userData);
-
       return navigate('/');
     }
     else {

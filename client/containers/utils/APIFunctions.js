@@ -51,8 +51,10 @@ APIFunctions.createUser = async (username, password, email) => {
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((returnedData) => console.log("User successfully created in SQL database! User ID is:", returnedData))
-    .then((returnedData) => returnedData)
+    .then((returnedData) => {
+      console.log("User successfully created in SQL database! User ID is:", returnedData);
+      return returnedData;
+    })
     .catch((err) => console.log('Error creating new user data', err));
 
   return response;

@@ -49,6 +49,8 @@ const SignUp = () => {
 
       // ^^^ it is important that this is async.
 
+      console.log("Signup is returning this user ID:", userData);
+
       if (userData) {
         console.log('New User created!');
         setIsSubmitted(true);
