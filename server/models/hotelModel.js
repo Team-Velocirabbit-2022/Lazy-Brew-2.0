@@ -12,7 +12,7 @@ mongoose.connect(MONGO_URI, {
   // sets the name of the DB that our collections are part of
   dbName: 'hotels'
 })
-  .then(() => console.log('Connected to Mongo DB.'))
+  // .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
 
 const HotelSchema = new mongoose.Schema({
