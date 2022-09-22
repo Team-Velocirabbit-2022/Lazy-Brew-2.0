@@ -63,6 +63,7 @@ const Hotel = ({ hotelList, setBrewDone, brewDone }) => {
     <div>
       {/* sort the hotels by number of breweries with vacinity */}
       {hotelList.sort((a, b) => {
+        // Select breweries near hotel. The hotel with the most local breweries gets displayed for the location selected.
         return (a.breweryListLength > b.breweryListLength ? -1 : 1)
       })
         .filter((hotel) => !exclusionList.includes(hotel.name))
