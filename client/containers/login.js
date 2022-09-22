@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 import { GoogleLogin } from 'react-google-login';
 import APIFunctions from './/utils/APIFunctions.js';
+import { refreshTokenSetup } from './refreshTokenSetup';
 
 
 
@@ -30,7 +31,19 @@ const Login = () => {
   const clientSecret = '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';
 
 
+  function Login() {
+    const onSuccess = (res) => {
+      console.log('[Login Success] currentUser:', res.profileObj);
 
+      refreshTokenSetup(res);
+    }
+
+    const onFailure = (res) => {
+      console.log('[Login failed] res:', res)
+    }
+    
+
+  }
   const errors = {
     uname: "invalid username",
     pass: "invalid password"
@@ -101,22 +114,7 @@ const onFailure = (res) => {
     console.log("LOGIN FAILED! res: ", res)
 }
 
-  const googleLogin = function Login() {
 
-    return(
-        <div id="signInButton">
-            <GoogleLogin
-            clientId  = {clientID}
-            buttonText="Login"
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={'single_host_origin'}
-            sSignedIn={true}
-        />
-        </div>
-    )
-
-  }
 
   // this is a variable containing the form and the submit/signup buttons
 
@@ -157,12 +155,50 @@ const onFailure = (res) => {
     </div>
   );
 
+  const googleOAuth = (
+    <div className="FlexDisplay">
+    <div className="ContainerMainContainer">
+    <div id="main_wrapper">
+    <div id="allHotelsWrapper">
+    <div className='hotelWrapper'>
+    
+    
+    
+    <div>
+        <GoogleLogin
+            clientId  = {clientID}
+            buttonText="Login"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            style={{ marginTop: '100px' }}
+            isSignedIn={true}
+        />
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+  )
+
   return (
+      
+    <div>
+
     <div className="login-page">
       <div className="login-form">
         <div className="title">Sign In</div>
         {renderForm}
       </div>
+    </div>
+
+        <div>
+          {googleOAuth}
+        </div>
+
     </div>
   );
 
