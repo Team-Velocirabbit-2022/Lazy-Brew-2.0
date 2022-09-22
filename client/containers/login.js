@@ -23,8 +23,13 @@ import { refreshTokenSetup } from './refreshTokenSetup';
 const Login = () => {
   const navigate = useNavigate();
   const [userId, setUserId] = useContext(UserContext);
+  const [userName, setUserName] = useContext(UserContext);
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    console.log('useEffect logs: ', userId, userName);
+  })
 
   // above is our state. userId is important to pass along when the user logs in. 
   // errorMessages display when the user logs in with an incorrect username or PW.
@@ -66,21 +71,28 @@ const Login = () => {
 
     // document.forms[0] grabs the value of whatever text is in the username and PW input fields
 
-
+  // console.log("This should be first!")
   const userData = await APIFunctions.verifyLogin(uname.value, pass.value);
+  // console.log('This should be third!')
     // ^^^ here is where we make a get request to our database to see if the entered username
     // and password are stored in our database. if they are, we will return the userId
 
 
     // Compare user info
-    console.log("What is userData?", userData, typeof userData);
+    // console.log("What is userData?", userData, typeof userData);
 
     if (userData) {
 
-      // console.log("I logged in correctly in LOGIN.JS!!!", userData);
       setIsSubmitted(true);
+      console.log("Is state being changed for isSubmitted? ", isSubmitted);
+      console.log('userData: ', userData)
       setUserId(userData);
+      console.log('userId state value: ', userId);
+      console.log('input username: ', uname.value);
+      setUserName(uname.value);
+      console.log('state username after login: ', userName);
       return navigate('/');
+      
     }
     else {
       // Username not found

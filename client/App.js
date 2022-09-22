@@ -15,18 +15,21 @@ const UserContext = createContext([{}, () => {}]);
 const App = () => {
 
   const [userId, setUserId] = useState(null);
+  const [userName, setUserName] = useState('');
 
   return (
     
     <div className='appContainer'>
       <div>
       <UserContext.Provider value={[userId, setUserId]}>
+      <UserContext.Provider value={[userName, setUserName]}>
         <Routes>
             <Route index element = {<MainContainer />} />
             <Route path='/' element={<MainContainer />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
         </Routes>
+        </UserContext.Provider>
         </UserContext.Provider>
       </div>
       

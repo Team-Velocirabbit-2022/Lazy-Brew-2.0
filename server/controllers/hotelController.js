@@ -59,6 +59,22 @@ hotelController.postHotel = async (req, res, next) => {
   }
 };
 
+// DELETE ALL functionality - to reset excluded list
+hotelController.deleteAll = (req, res, next) => {
+  Hotel.deleteMany({})
+    .then(data => {
+      next();
+    })
+    .catch(err => {
+      next(
+        createErr({
+          method: 'getAllusers',
+          type: 'db query error',
+          err,
+        }));
+    })
+};
+
 // hotelController.postBreweryRecommendation = async (req, res, next) => {
 //   console.log(req.body)
 //   try {
