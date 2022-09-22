@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@mui/material';
 import { Redirect } from 'react-router';
@@ -7,6 +7,7 @@ import Hotel from './Hotel';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
 import Login from './login';
 import SignUp from './signup';
+import { UserContext } from '../App';
 
 
 //library for calculating distance using longitude/latitude
@@ -37,6 +38,9 @@ const MainContainer = () => {
   const [selectedCity, setCity] = useState('')
 
   const [hotelResultNumber, setHotelResultNumber] = useState(5)
+
+  const [userId, setUserId] = useContext(UserContext);
+  const [userName, setUserName] = useContext(UserContext);
 
   //fetch request for hotels with check in/check out dates pertaining to city selected
   const getHotelData = () => {
@@ -126,6 +130,18 @@ const MainContainer = () => {
   //   return Navigate('/signup')
   // }
 
+  console.log("Is state persisting? User ID is ", userId, "username is ", userName);
+
+  let Greeting = (
+    <div className='greeting'></div>
+  );
+
+  if (userName !== '') {
+    Greeting = (
+      <div className='greeting'> Welcome back, {userName}.</div>
+    )
+  };
+
 
   const Navbar = (
 
@@ -134,6 +150,7 @@ const MainContainer = () => {
         <div className='logo'>
           <span className='Brand'><h1> Lazy Brew </h1></span>
           <img src='https://i.imgur.com/SuDASN5.png' className='logo-design'></img>
+            {Greeting}
           <div className='login'>
             <Link to='/login' element={<Login />}>Log In</Link>
         </div>

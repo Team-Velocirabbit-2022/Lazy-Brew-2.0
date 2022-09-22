@@ -27,6 +27,7 @@ APIFunctions.verifyLogin = async (username, password) => {
   })
     .then((response) => response.json())
     .then((returnedData) => {
+      // console.log("this should be second!");
       return returnedData;
     })
     .catch((err) => console.log('Error verifying Login', err));
