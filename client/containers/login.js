@@ -32,7 +32,7 @@ const Login = () => {
 
 
   const errors = {
-    uname: "invalid username",
+    uname: "Incorrect login info. Please try again.",
     pass: "invalid password"
   };
 
@@ -139,7 +139,7 @@ const onFailure = (res) => {
         <div className="input-container">
           <label>Password </label>
           <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
+          {renderErrorMessage("uname")}
         </div>
         <div className="button-container">
           <input type="submit" value="Log In"/>
